@@ -1,5 +1,5 @@
 package com.facultad.tp;
-
+/* comentario de prueba para github de marcelo*/
 import java.util.Random;
 
 public class BatallaMagosVsMortifagos {
