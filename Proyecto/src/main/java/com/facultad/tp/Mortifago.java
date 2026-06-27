@@ -2,8 +2,8 @@ package com.facultad.tp;
 
 public abstract class Mortifago extends Personaje {
 
-    public Mortifago(String nombre, int nivelMagia, int puntosVida) {
-        super(nombre, nivelMagia, puntosVida);
+    public Mortifago(String nombre, int nivelMagia, int puntosVida,int mana) {
+        super(nombre, nivelMagia, puntosVida, mana);
     }
 
     @Override

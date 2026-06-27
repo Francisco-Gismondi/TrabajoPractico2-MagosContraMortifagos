@@ -2,8 +2,8 @@ package com.facultad.tp;
 
 public abstract class Mago extends Personaje {
 
-    public Mago(String nombre, int nivelMagia, int puntosVida) {
-        super(nombre, nivelMagia, puntosVida);
+    public Mago(String nombre, int nivelMagia, int puntosVida,int mana) {
+        super(nombre, nivelMagia, puntosVida,mana);
     }
 
     @Override
