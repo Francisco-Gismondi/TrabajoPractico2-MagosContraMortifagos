@@ -83,7 +83,7 @@ public class Batallon {
         if (h.esCuracion() && !necesitaCuracion) return false;
         return true;
     }
-
+    //REVISAR
     private void inicializarRonda() {
         for (Personaje p : personajes) {
             p.limpiarProteccion();
