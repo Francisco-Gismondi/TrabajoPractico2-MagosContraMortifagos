@@ -31,7 +31,7 @@ public class Batallon {
     }
 
     public void atacar(Batallon otro) {
-        inicializarRonda();
+        //inicializarRonda();
 
         List<Personaje> atacantes = new ArrayList<>(personajes);
 
@@ -73,7 +73,8 @@ public class Batallon {
 
         limpiarEliminados(otro);
     }
-
+    
+    //Devuelve true si el personaje tiene menos del 70% de vida 
     private boolean necesitaSerCurado(Personaje p) {
         return (double) p.getPuntosVida() / p.getPuntosVidaMaximos() < 0.7;
     }
@@ -109,9 +110,9 @@ public class Batallon {
     }
 
     public void mostrarEstado() {
-        System.out.println("--- Estado del Batalion ---");
+        // System.out.println("[ Estado del Batallon ]");
         if (personajes.isEmpty()) {
-            System.out.println("(vacio)");
+            System.out.println("   (vacio)");
         } else {
             for (Personaje p : personajes) {
                 System.out.println("  " + p);

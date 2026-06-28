@@ -45,7 +45,7 @@ public abstract class Personaje {
     public void restarVidaInterno(int danio) {
         this.puntosVida = Math.max(0, this.puntosVida - danio);
         if (this.puntosVida == 0) {
-            System.out.println(this.nombre + " ha sido eliminado del combate.");
+            System.out.println("  ! " + this.nombre + " ha sido eliminado del combate.");
         }
     }
     
@@ -64,7 +64,7 @@ public abstract class Personaje {
         int vidaAnterior = puntosVida;
         puntosVida = Math.min(puntosVidaMaximos, puntosVida + cantidad);
         int curacionReal = puntosVida - vidaAnterior;
-        System.out.println(nombre + " se ha curado " + curacionReal + " puntos de vida (PV: " + puntosVida + "/" + puntosVidaMaximos + ")");
+        System.out.println("  + " + nombre + " se ha curado " + curacionReal + " puntos de vida (PV: " + puntosVida + "/" + puntosVidaMaximos + ")");
     }
 
     public boolean estaVivo() {
