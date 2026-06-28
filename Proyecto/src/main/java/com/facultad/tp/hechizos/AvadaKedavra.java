@@ -14,9 +14,9 @@ public class AvadaKedavra implements Hechizo {
     public void ejecutar(Personaje lanzador, Personaje objetivo) {
         int danioBase = 40;
         int danioFinal = lanzador.calcularDanio(this, danioBase);
-        objetivo.recibirDanio(danioFinal);
         System.out.println(" * " + lanzador.getNombre() + " lanza Avada Kedavra a " + objetivo.getNombre()
             + " causando " + danioFinal + " de danio.");
+        objetivo.recibirDanio(danioFinal);
     }
 
     @Override
