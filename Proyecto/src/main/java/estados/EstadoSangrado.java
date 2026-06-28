@@ -16,6 +16,10 @@ public class EstadoSangrado implements EstadoPersonaje {
 	@Override
 	public void inicioDeTurno(Personaje personaje) {
 		
+		personaje.restarVidaInterno(this.danioPorTurno);
+	    System.out.println("  + " +personaje.getNombre() + " sufre " + this.danioPorTurno + " puntos de danio por sangrado.");    
+		this.turnosRestantes--;
+		
         if (this.turnosRestantes <= 0) {
             System.out.println("  + El efecto del sangrado en " + personaje.getNombre() + " se ha disipado.");
             // Solo vuelve a la normalidad si el sangrado no lo eliminó
@@ -27,9 +31,7 @@ public class EstadoSangrado implements EstadoPersonaje {
             	return;
             }
         }
-        personaje.restarVidaInterno(this.danioPorTurno);
-        System.out.println("  + " +personaje.getNombre() + " sufre " + this.danioPorTurno + " puntos de danio por sangrado.");    
-        this.turnosRestantes--;
+       
         
 	}
 

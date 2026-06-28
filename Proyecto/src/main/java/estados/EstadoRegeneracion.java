@@ -14,13 +14,13 @@ public class EstadoRegeneracion implements EstadoPersonaje {
     
 	@Override
 	public void inicioDeTurno(Personaje personaje) {
+		this.turnosRestantes--;
 		personaje.curar(this.curacionPorTurno);
         System.out.println("  + " + personaje.getNombre() + " regenera " + curacionPorTurno + " puntos de vida.");
 
         if (this.turnosRestantes <= 0) {
             personaje.setEstado(new EstadoNormal());
         }
-        this.turnosRestantes--;
 	}
 
 	@Override

@@ -109,6 +109,10 @@ public abstract class Personaje {
         return hechizos;
     }
     
+    public EstadoPersonaje getEstadoActual() {
+        return this.estadoActual;
+    }
+    
     public abstract boolean puedeLanzarMagiaOscura();
 
     @Override
