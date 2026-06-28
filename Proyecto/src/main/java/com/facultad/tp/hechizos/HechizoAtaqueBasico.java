@@ -10,18 +10,17 @@ import com.facultad.tp.Personaje;
 public class HechizoAtaqueBasico implements Hechizo {
 	private String nombre;
 	private int dañoBase;
-	
+
 	public HechizoAtaqueBasico(String nombre, int dañoBase) {
 		this.nombre = nombre;
 		this.dañoBase = dañoBase;
 	}
-	
+
 	@Override
 	public void ejecutar(Personaje lanzador, Personaje objetivo) {
-				
-		objetivo.recibirDanio(this.dañoBase);
-		System.out.println(lanzador.getNombre() + " lanza " + this.nombre 
-                + objetivo.getNombre() + " recibe " + dañoBase + " puntos de daño.");
+		int danioFinal = lanzador.calcularDanio(this, dañoBase);
+		System.out.println(" * " + lanzador.getNombre() + " lanza " + this.nombre);
+		objetivo.recibirDanio(danioFinal);
 	}
 
 	@Override
@@ -29,7 +28,6 @@ public class HechizoAtaqueBasico implements Hechizo {
 		return this.nombre;
 	}
 
-	
 	@Override
 	public boolean esAtaque() {
 		return true;
@@ -44,6 +42,10 @@ public class HechizoAtaqueBasico implements Hechizo {
 	public boolean esCuracion() {
 		return false;
 	}
-	
+
+	@Override
+	public int getCostoMana() {
+		return 5;
+	}
 
 }

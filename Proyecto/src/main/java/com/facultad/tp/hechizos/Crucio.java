@@ -3,25 +3,29 @@ package com.facultad.tp.hechizos;
 import com.facultad.tp.Hechizo;
 import com.facultad.tp.Personaje;
 
+import estados.EstadoAturdido;
+
 //ATAQUE OSCURO
-public class Crucio implements Hechizo{
+public class Crucio implements Hechizo {
 
 	@Override
 	public void ejecutar(Personaje lanzador, Personaje objetivo) {
-		int dañoBase = 20;
-		int afinidad = lanzador.obtenerAfinidadOscura();
-		if(afinidad == 0) {
-			System.out.println(lanzador.getNombre() + " lanza Crucio sin verdadera intención de causar dolor.");
-            objetivo.recibirDanio(5);
-            return;
+		int danioBase = 20;
+		boolean impacto;
+		
+		System.out.println(" * " + lanzador.getNombre() + " lanza Crucio");
+		
+		if (!lanzador.puedeLanzarMagiaOscura()) {
+			impacto = objetivo.recibirDanio(5);
+			return;
 		}
-		int danoFinal = 15 * afinidad;
-        objetivo.recibirDanio(danoFinal);
-        
-        System.out.printlnS(lanzador.getNombre() + " tortura a " + objetivo.getNombre() + " con la maldición Cruciatus. Recibe " + danoFinal + " de daño y queda incapacitado.");
-        
-        //Aplicar estado de incapacitación/aturdimiento
-        // objetivo.aplicarEstado(new EstadoAturdido(1));
+		int danioFinal = lanzador.calcularDanio(this, danioBase);
+		impacto = objetivo.recibirDanio(danioFinal);
+
+		if (impacto) {
+			System.out.println("  -> " + objetivo.getNombre() + " queda aturdido.");
+			objetivo.setEstado(new EstadoAturdido(2));
+		}
 	}
 
 	@Override
@@ -44,6 +48,11 @@ public class Crucio implements Hechizo{
 	public boolean esCuracion() {
 		return false;
 	}
-	
+
+	@Override
+	public int getCostoMana() {
+		// TODO Auto-generated method stub
+		return 25;
+	}
 
 }

@@ -14,11 +14,11 @@ public class EstadoAturdido implements EstadoPersonaje {
 	public void inicioDeTurno(Personaje personaje) {
 		
 		if (this.turnosRestantes <= 0) {
-            System.out.println(personaje.getNombre() + " se ha recuperado del aturdimiento.");
+            System.out.println("  + " + personaje.getNombre() + " se ha recuperado del aturdimiento.");
             personaje.setEstado(new EstadoNormal()); // Vuelve a la normalidad
         }
 		else {
-			System.out.println(personaje.getNombre() + " esta aturdido. Turnos restantes: " + this.turnosRestantes);
+			System.out.println("  + " + personaje.getNombre() + " esta aturdido. Turnos restantes: " + this.turnosRestantes);
 		}
 		this.turnosRestantes--;
 			
@@ -30,8 +30,11 @@ public class EstadoAturdido implements EstadoPersonaje {
 	}
 
 	@Override
-	public void recibirDanio(Personaje personaje, int cantidad) {
-		personaje.restarVidaInterno(cantidad);	
+	public boolean recibirDanio(Personaje personaje, int cantidad) {
+		System.out.println("  -> " + personaje.getNombre() + " recibe " + cantidad + " puntos de daño.");
+        personaje.restarVidaInterno(cantidad);
+        
+        return true;
 	}
 
 }

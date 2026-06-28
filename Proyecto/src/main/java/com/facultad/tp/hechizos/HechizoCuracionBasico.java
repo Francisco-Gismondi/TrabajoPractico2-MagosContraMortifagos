@@ -20,11 +20,11 @@ public class HechizoCuracionBasico implements Hechizo {
 	
 	@Override
 	public void ejecutar(Personaje lanzador, Personaje objetivo) {
+		int curacionFinal = lanzador.calcularCuracion(this, curacionBase);
+		objetivo.curar(curacionFinal);
 		
-		objetivo.curar(curacionBase);
-		
-		System.out.println(lanzador.getNombre() + "lanza " + this.nombre + " sobre " +
-							objetivo.getNombre() + ", curándole " + curacionBase + " puntos de vida.");
+		System.out.println(" * " + lanzador.getNombre() + " lanza " + this.nombre + " sobre " +
+							objetivo.getNombre() + ", curándole " + curacionFinal + " puntos de vida.");
 		
 	}
 
@@ -46,6 +46,12 @@ public class HechizoCuracionBasico implements Hechizo {
 	@Override
 	public boolean esCuracion() {
 		return true;
+	}
+
+	@Override
+	public int getCostoMana() {
+		// TODO Auto-generated method stub
+		return 10;
 	}
 
 }

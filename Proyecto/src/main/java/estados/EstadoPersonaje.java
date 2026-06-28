@@ -10,5 +10,5 @@ public interface EstadoPersonaje {
     boolean puedeAtacar();
     
     // Define qué pasa cuando alguien le hace daño
-    void recibirDanio(Personaje personaje, int cantidad);
+    boolean recibirDanio(Personaje personaje, int cantidad);
 }

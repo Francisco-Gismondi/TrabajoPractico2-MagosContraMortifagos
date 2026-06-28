@@ -44,8 +44,8 @@ public class HechizoTest {
 
     @Test
     public void testExpelliarmusCausaDanio() {
-        Auror auror = new Auror("Harry", 50, 150);
-        Seguidor seguidor = new Seguidor("Mortifago", 50, 100);
+        Auror auror = new Auror("Harry", 50, 150,100);
+        Seguidor seguidor = new Seguidor("Mortifago", 50, 100,100);
         Expelliarmus exp = new Expelliarmus();
 
         exp.ejecutar(auror, seguidor);
@@ -55,8 +55,8 @@ public class HechizoTest {
 
     @Test
     public void testAvadaKedavraAltoDanio() {
-        Auror auror = new Auror("Harry", 50, 150);
-        Seguidor seguidor = new Seguidor("Mortifago", 50, 100);
+        Auror auror = new Auror("Harry", 50, 150,100);
+        Seguidor seguidor = new Seguidor("Mortifago", 50, 100,100);
         AvadaKedavra ak = new AvadaKedavra();
 
         ak.ejecutar(seguidor, auror);
@@ -65,15 +65,15 @@ public class HechizoTest {
 
     @Test
     public void testAvadaKedavraMortifagoMasLetal() {
-        Auror auror = new Auror("Harry", 50, 150);
-        Seguidor seguidor = new Seguidor("Mortifago", 80, 100);
+        Auror auror = new Auror("Harry", 50, 150,100);
+        Seguidor seguidor = new Seguidor("Mortifago", 80, 100,100);
         Expelliarmus exp = new Expelliarmus();
 
         exp.ejecutar(seguidor, auror);
         int danioMortifago = 150 - auror.getPuntosVida();
 
-        auror = new Auror("Harry", 50, 150);
-        Mago mago = new Auror("Otro Harry", 80, 150);
+        auror = new Auror("Harry", 50, 150,100);
+        Mago mago = new Auror("Otro Harry", 80, 150,100);
         exp.ejecutar(mago, auror);
         int danioMago = 150 - auror.getPuntosVida();
 
@@ -83,7 +83,7 @@ public class HechizoTest {
 
     @Test
     public void testProtegoActivaProteccion() {
-        Auror auror = new Auror("Harry", 50, 150);
+        Auror auror = new Auror("Harry", 50, 150,100);
         Protego prot = new Protego();
 
         assertFalse(auror.estaProtegido());
@@ -93,8 +93,8 @@ public class HechizoTest {
 
     @Test
     public void testProtegoReduceDanio() {
-        Auror auror = new Auror("Harry", 50, 150);
-        Seguidor seguidor = new Seguidor("Mortifago", 50, 100);
+        Auror auror = new Auror("Harry", 50, 150,100);
+        Seguidor seguidor = new Seguidor("Mortifago", 50, 100,100);
         Expelliarmus exp = new Expelliarmus();
 
         auror.proteger();
@@ -109,7 +109,7 @@ public class HechizoTest {
 
     @Test
     public void testExpectoPatronumCura() {
-        Auror auror = new Auror("Harry", 50, 150);
+        Auror auror = new Auror("Harry", 50, 150,100);
         auror.recibirDanio(80);
         assertEquals(70, auror.getPuntosVida());
 

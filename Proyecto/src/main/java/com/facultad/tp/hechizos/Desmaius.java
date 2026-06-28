@@ -3,45 +3,49 @@ package com.facultad.tp.hechizos;
 import com.facultad.tp.Hechizo;
 import com.facultad.tp.Personaje;
 
+import estados.EstadoAturdido;
+
 //ATAQUE
 public class Desmaius implements Hechizo{
 
 	@Override
 	public void ejecutar(Personaje lanzador, Personaje objetivo) {
 		int dañoBase = 20;
-		int dañoFinal = dañoBase * lanzador.obtenerAfinidadAtaque();
+		int dañoFinal = lanzador.calcularDanio(this, dañoBase);
+        int turnos = 1;
+        System.out.println(" * " + lanzador.getNombre() + " lanza Desmaius. "); 
         
-        objetivo.recibirDanio(dañoFinal);
+        boolean impacto = objetivo.recibirDanio(dañoFinal);
         
-        System.out.println(lanzador.getNombre() + " lanza Desmaius. " 
-                + objetivo.getNombre() + " recibe " + dañoFinal + " de daño y queda aturdido.");
-        
-        // HAY QUE AGREGAR ESTADOS A LOS PERSONAJES E IMPLEMENTAR ALGO ASI
-        //  objetivo.aplicarEstado(new EstadoAturdido(1));
+        if(impacto) {
+        System.out.println("  -> " + objetivo.getNombre() + " queda aturdido.");
+        objetivo.setEstado(new EstadoAturdido(turnos));
+        }
 	}
 
 	@Override
 	public String getNombre() {
-		// TODO Auto-generated method stub
 		return "Desmaius";
 	}
 
 	@Override
 	public boolean esAtaque() {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean esDefensa() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean esCuracion() {
-		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public int getCostoMana() {
+		return 10;
 	}
 
 }
