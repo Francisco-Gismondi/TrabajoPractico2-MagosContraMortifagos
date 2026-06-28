@@ -28,13 +28,13 @@ public class EstadoEscudo implements EstadoPersonaje {
 		if (cantidad >= this.puntosDeEscudo) {
 			
             int dañoSobrante = cantidad - this.puntosDeEscudo;
-            System.out.println("¡El escudo de " + personaje.getNombre() + " se ha roto!");
+            System.out.println("   ¡El escudo de " + personaje.getNombre() + " se ha roto!");
             personaje.restarVidaInterno(dañoSobrante);
             personaje.setEstado(new EstadoNormal()); // El escudo se rompió, vuelve a normal
             return true;
         } else {
             this.puntosDeEscudo -= cantidad;
-            System.out.println("El escudo de " + personaje.getNombre() + " absorbió el ataque. Escudo restante: " + this.puntosDeEscudo);
+            System.out.println("   El escudo de " + personaje.getNombre() + " absorbió el ataque. Escudo restante: " + this.puntosDeEscudo);
         }
 		return false;
 	}

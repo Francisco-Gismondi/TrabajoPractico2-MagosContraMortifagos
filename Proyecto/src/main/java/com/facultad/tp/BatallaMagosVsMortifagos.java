@@ -5,9 +5,9 @@ import java.util.Random;
 public class BatallaMagosVsMortifagos {
 
     public static void main(String[] args) {
-        System.out.println("==========================================");
-        System.out.println("   BATALLA: MAGOS vs MORTIFAGOS");
-        System.out.println("==========================================");
+    	System.out.println("======================================================================");
+        System.out.println("                     BATALLA: MAGOS vs MORTIFAGOS");
+        System.out.println("======================================================================");
 
         Batallon batallonMagos = new Batallon();
         Batallon batallonMortifagos = new Batallon();
@@ -17,10 +17,10 @@ public class BatallaMagosVsMortifagos {
             batallonMortifagos.agregarPersonaje(Reclutador.crearMortifago());
         }
 
-        System.out.println("\n--- BATALLONES INICIALES ---");
+        System.out.println("\n[ BATALLONES INICIALES ]");
         System.out.println("Magos:");
         batallonMagos.mostrarEstado();
-        System.out.println("Mortifagos:");
+        System.out.println("\nMortifagos:");
         batallonMortifagos.mostrarEstado();
 
         Random rand = new Random();
@@ -28,30 +28,36 @@ public class BatallaMagosVsMortifagos {
 
         while (batallonMagos.tienePersonajesSaludables() && batallonMortifagos.tienePersonajesSaludables()) {
             ronda++;
-            System.out.println("\n========== RONDA " + ronda + " ==========");
+            System.out.println("======================================================================");
+            System.out.println("                                RONDA " + ronda + "                                ");
+            System.out.println("======================================================================");
 
             if (rand.nextBoolean()) {
-                System.out.println("\n-- Turno de los Magos --");
+            	System.out.println("\n> TURNO DE LOS MAGOS");
+                System.out.println("----------------------------------------------------------------------");
                 batallonMagos.atacar(batallonMortifagos);
                 if (batallonMortifagos.tienePersonajesSaludables()) {
-                    System.out.println("\n-- Turno de los Mortifagos --");
+                	System.out.println("\n> TURNO DE LOS MORTIFAGOS");
+                	System.out.println("----------------------------------------------------------------------");
                     batallonMortifagos.atacar(batallonMagos);
                 }
             } else {
-                System.out.println("\n-- Turno de los Mortifagos --");
+            	System.out.println("\n> TURNO DE LOS MORTIFAGOS");
+            	System.out.println("----------------------------------------------------------------------");
                 batallonMortifagos.atacar(batallonMagos);
                 if (batallonMagos.tienePersonajesSaludables()) {
-                    System.out.println("\n-- Turno de los Magos --");
+                	System.out.println("\n> TURNO DE LOS MAGOS");
+                	System.out.println("----------------------------------------------------------------------");
                     batallonMagos.atacar(batallonMortifagos);
                 }
             }
 
-            System.out.println("\n--- Estado actual ---");
+            System.out.println("\n---------------------------- Estado actual ----------------------------");
             System.out.println("Magos (" + batallonMagos.tamaño() + "):");
             batallonMagos.mostrarEstado();
             System.out.println("Mortifagos (" + batallonMortifagos.tamaño() + "):");
             batallonMortifagos.mostrarEstado();
-            System.out.println("----------------------------");
+            System.out.println("----------------------------------------------------------------------");
 
             if (ronda >= 50) {
                 System.out.println("\nLa batalla ha llegado a su limite de rondas.");
@@ -59,16 +65,15 @@ public class BatallaMagosVsMortifagos {
             }
         }
 
-        System.out.println("\n==========================================");
-        System.out.println("   RESULTADO FINAL");
-        System.out.println("==========================================");
+        System.out.println("======================================================================");
+        System.out.println("                            RESULTADO FINAL");
         if (batallonMagos.tienePersonajesSaludables()) {
-            System.out.println("   \u00a1Los magos han ganado la batalla!");
+            System.out.println("              \u00a1Los magos han ganado la batalla!");
         } else if (batallonMortifagos.tienePersonajesSaludables()) {
-            System.out.println("   \u00a1Los mortifagos han ganado la batalla!");
+            System.out.println("              \u00a1Los mortifagos han ganado la batalla!");
         } else {
-            System.out.println("   \u00a1Empate! Todos han caido.");
+            System.out.println("              \u00a1Empate! Todos han caido.");
         }
-        System.out.println("==========================================");
+        System.out.println("======================================================================");
     }
 }

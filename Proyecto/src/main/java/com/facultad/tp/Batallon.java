@@ -39,12 +39,8 @@ public class Batallon {
     }
 
     public void atacar(Batallon otro) {
-<<<<<<< Updated upstream
-        inicializarRonda();
-=======
         // 1. Aplicamos venenos, curaciones continuas, etc.
         this.procesarInicioDeRonda(); 
->>>>>>> Stashed changes
 
         List<Personaje> atacantes = new ArrayList<>(personajes);
 
@@ -93,11 +89,8 @@ public class Batallon {
         this.limpiarEliminados();
         otro.limpiarEliminados();
     }
-<<<<<<< Updated upstream
-
-=======
     
->>>>>>> Stashed changes
+    //Devuelve true si el personaje tiene menos del 70% de vida 
     private boolean necesitaSerCurado(Personaje p) {
         return (double) p.getPuntosVida() / p.getPuntosVidaMaximos() < 0.7;
     }
@@ -137,12 +130,8 @@ public class Batallon {
     }
 
     public void mostrarEstado() {
-<<<<<<< Updated upstream
-        System.out.println("--- Estado del Batalion ---");
-=======
->>>>>>> Stashed changes
         if (personajes.isEmpty()) {
-            System.out.println("(vacio)");
+            System.out.println("   (vacio)");
         } else {
             for (Personaje p : personajes) {
                 System.out.println("  " + p);
