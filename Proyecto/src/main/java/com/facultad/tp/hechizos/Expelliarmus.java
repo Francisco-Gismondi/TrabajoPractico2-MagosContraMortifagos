@@ -17,8 +17,6 @@ public class Expelliarmus implements Hechizo {
         int danioFinal = lanzador.calcularDanio(this, danioBase);
         System.out.println(" * " + lanzador.getNombre() + " lanza Expelliarmus.");
         objetivo.recibirDanio(danioFinal);
-        System.out.println(lanzador.getNombre() + " lanza Expelliarmus a " + objetivo.getNombre());
-        objetivo.recibirDanio(danioFinal);
     }
 
     @Override

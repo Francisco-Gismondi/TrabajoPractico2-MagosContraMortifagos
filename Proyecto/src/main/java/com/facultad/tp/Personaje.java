@@ -66,9 +66,12 @@ public abstract class Personaje {
         }
     }
     public int calcularDanio(Hechizo hechizo, int danioBase) {
-        return danioBase;
+    	return this.estadoActual.potenciarDanio(this, danioBase);
     }
     
+    public void notificarCaidaAliado(Personaje aliadoCaido) {
+        // La mayoría de los personajes ignoran esto por defecto
+    }
     
     public int calcularCuracion(Hechizo hechizo, int curacionBase) {
         return curacionBase;

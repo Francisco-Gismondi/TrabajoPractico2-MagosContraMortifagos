@@ -37,4 +37,10 @@ public class EstadoAturdido implements EstadoPersonaje {
         return true;
 	}
 
+	@Override
+	public int potenciarDanio(Personaje personaje, int danioBase) {
+		// TODO Auto-generated method stub
+		return danioBase;
+	}
+
 }

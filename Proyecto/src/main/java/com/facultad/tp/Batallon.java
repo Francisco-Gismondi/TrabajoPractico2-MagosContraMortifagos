@@ -107,20 +107,26 @@ public class Batallon {
             .min(Comparator.comparingDouble(p -> (double) p.getPuntosVida() / p.getPuntosVidaMaximos()))
             .orElse(null);
     }
-    ///REVISAR ESTA PARTE
-    // Refactorizado para respetar encapsulamiento y evitar Memory Leaks
+
     public void limpiarEliminados() {
+        List<Personaje> caidosEnEstaRonda = new ArrayList<>();
         Iterator<Personaje> iterator = personajes.iterator();
+        
         while (iterator.hasNext()) {
             Personaje p = iterator.next();
             if (!p.estaVivo()) {
-                // Lo borramos del Map para liberar memoria
+                caidosEnEstaRonda.add(p); // Lo guardamos temporalmente
                 hechizosPorPersonaje.remove(p); 
-                // Lo borramos de la Lista
                 iterator.remove(); 
             } else {
-                // Si está vivo, solo le vaciamos el Set de hechizos usados para la próxima ronda
                 hechizosPorPersonaje.get(p).clear();
+            }
+        }
+
+        // Notificamos a los sobrevivientes del mismo batallón
+        for (Personaje caido : caidosEnEstaRonda) {
+            for (Personaje vivo : personajes) {
+                vivo.notificarCaidaAliado(caido);
             }
         }
     }
