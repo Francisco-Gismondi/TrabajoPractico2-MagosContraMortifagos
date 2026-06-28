@@ -3,15 +3,16 @@ package com.facultad.tp.hechizos;
 import com.facultad.tp.Hechizo;
 import com.facultad.tp.Personaje;
 
+import estados.EstadoNormal;
+
 public class FiniteIncantatem implements Hechizo {
 
     @Override
     public void ejecutar(Personaje lanzador, Personaje objetivo) {
-        System.out.println(lanzador.getNombre() + " lanza Finite Incantatem sobre " + objetivo.getNombre() + 
+        System.out.println(" * " + lanzador.getNombre() + " lanza Finite Incantatem sobre " + objetivo.getNombre() + 
                            " ¡Todos los efectos mágicos son anulados!");
         
-        // objetivo.limpiarTodosLosEstados(); 
-        // (Este método vaciaría la lista de estados alterados y pondría los escudos a 0).
+        objetivo.setEstado(new EstadoNormal());
     }
 
 	@Override
@@ -36,5 +37,10 @@ public class FiniteIncantatem implements Hechizo {
 	public boolean esCuracion() {
 		// TODO Auto-generated method stub
 		return true;
+	}
+
+	@Override
+	public int getCostoMana() {
+		return 15;
 	}
 }

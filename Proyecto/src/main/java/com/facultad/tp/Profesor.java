@@ -10,7 +10,8 @@ public class Profesor extends Mago {
         this.hechizos = Arrays.asList(
             new Expelliarmus(),
             new Protego(),
-            new ExpectoPatronum()
+            new Desmaius(),
+            new FiniteIncantatem()
         );
     }
 }

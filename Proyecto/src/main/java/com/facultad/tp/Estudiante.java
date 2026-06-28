@@ -8,8 +8,9 @@ public class Estudiante extends Mago {
     public Estudiante(String nombre, int nivelMagia, int puntosVida, int mana) {
         super(nombre, nivelMagia, puntosVida,mana);
         this.hechizos = Arrays.asList(
+        	new HechizoAtaqueBasico("Flipendo", 10),
             new Expelliarmus(),
-            new ExpectoPatronum()
+            new HechizoCuracionBasico("Ferula",10)
         );
     }
 }

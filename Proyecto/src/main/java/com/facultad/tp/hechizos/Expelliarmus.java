@@ -14,6 +14,10 @@ public class Expelliarmus implements Hechizo {
     public void ejecutar(Personaje lanzador, Personaje objetivo) {
         int danioBase = 25;
         int danioFinal = lanzador.calcularDanio(this, danioBase);
+<<<<<<< Updated upstream
+=======
+        System.out.println(" * " + lanzador.getNombre() + " lanza Expelliarmus.");
+>>>>>>> Stashed changes
         objetivo.recibirDanio(danioFinal);
         System.out.println(lanzador.getNombre() + " lanza Expelliarmus a " + objetivo.getNombre()
             + " causando " + danioFinal + " de danio.");
@@ -43,4 +47,10 @@ public class Expelliarmus implements Hechizo {
     public int hashCode() {
         return getNombre().hashCode();
     }
+
+	@Override
+	public int getCostoMana() {
+		// TODO Auto-generated method stub
+		return 10;
+	}
 }

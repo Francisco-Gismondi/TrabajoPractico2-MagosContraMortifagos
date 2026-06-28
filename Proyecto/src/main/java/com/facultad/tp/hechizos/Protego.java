@@ -12,7 +12,20 @@ public class Protego implements Hechizo {
 
     @Override
     public void ejecutar(Personaje lanzador, Personaje objetivo) {
+<<<<<<< Updated upstream
         System.out.println(lanzador.getNombre() + " lanza Protego y se protege.");
+=======
+    	int escudoMaximo = 40 + (lanzador.getNivelMagia() / 10) + (lanzador.getPuntosVida() / 10); //100% del escudo
+    	int escudoMinimo = (int) (escudoMaximo * 0.70); //70% del escudo
+
+    	int rango = escudoMaximo - escudoMinimo + 1; //obtenemos un rango entre 1 y 30
+
+    	int poderDelEscudo = rand.nextInt(rango) + escudoMinimo; //generamos un escudo que varia
+        
+        objetivo.setEstado(new EstadoEscudo(poderDelEscudo));
+        
+        System.out.println(" * " + lanzador.getNombre() + " lanza protego y genera un escudo de " + poderDelEscudo + " puntos.");
+>>>>>>> Stashed changes
     }
 
     @Override
@@ -39,4 +52,10 @@ public class Protego implements Hechizo {
     public int hashCode() {
         return getNombre().hashCode();
     }
+
+	@Override
+	public int getCostoMana() {
+		// TODO Auto-generated method stub
+		return 15;
+	}
 }

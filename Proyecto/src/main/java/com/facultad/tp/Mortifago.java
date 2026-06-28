@@ -15,4 +15,9 @@ public abstract class Mortifago extends Personaje {
     public int calcularCuracion(Hechizo hechizo, int curacionBase) {
         return (int) (curacionBase * (1.0 - (100 - nivelMagia) / 200.0));
     }
+    
+    @Override
+    public boolean puedeLanzarMagiaOscura() {
+        return true; 
+    }
 }

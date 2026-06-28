@@ -15,7 +15,7 @@ public class EstadoRegeneracion implements EstadoPersonaje {
 	@Override
 	public void inicioDeTurno(Personaje personaje) {
 		personaje.curar(this.curacionPorTurno);
-        System.out.println(personaje.getNombre() + " regenera " + curacionPorTurno + " puntos de vida.");
+        System.out.println("  + " + personaje.getNombre() + " regenera " + curacionPorTurno + " puntos de vida.");
 
         if (this.turnosRestantes <= 0) {
             personaje.setEstado(new EstadoNormal());
@@ -29,8 +29,12 @@ public class EstadoRegeneracion implements EstadoPersonaje {
 	}
 
 	@Override
-	public void recibirDanio(Personaje personaje, int cantidad) {
-		personaje.restarVidaInterno(cantidad);		
+	public boolean recibirDanio(Personaje personaje, int cantidad) {
+		System.out.println("  -> " + personaje.getNombre() + " recibe " + cantidad + " puntos de daño.");
+        personaje.restarVidaInterno(cantidad);
+        return true;
 	}
+
+
 
 }

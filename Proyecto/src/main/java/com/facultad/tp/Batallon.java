@@ -2,7 +2,6 @@ package com.facultad.tp;
 
 import java.util.*;
 import java.util.stream.Collectors;
-
 public class Batallon {
 
     private List<Personaje> personajes;
@@ -30,14 +29,30 @@ public class Batallon {
             .collect(Collectors.toList());
     }
 
+    // Nuevo método para procesar los estados al inicio de la ronda de este batallón
+    public void procesarInicioDeRonda() {
+        for (Personaje p : personajes) {
+            if (p.estaVivo()) {
+                p.inicioDeTurno();
+            }
+        }
+    }
+
     public void atacar(Batallon otro) {
+<<<<<<< Updated upstream
         inicializarRonda();
+=======
+        // 1. Aplicamos venenos, curaciones continuas, etc.
+        this.procesarInicioDeRonda(); 
+>>>>>>> Stashed changes
 
         List<Personaje> atacantes = new ArrayList<>(personajes);
 
         for (Personaje atacante : atacantes) {
-            if (!atacante.estaVivo()) continue;
+            // 2. Validamos vida y EL ESTADO (Aturdido, etc.)
+            if (!atacante.estaVivo() || !atacante.puedeAtacar()) continue;
 
+            // Filtramos hechizos no repetidos en la ronda (usando el Set)
             List<Hechizo> hechizosDisponibles = atacante.getHechizos().stream()
                 .filter(h -> !hechizosPorPersonaje.get(atacante).contains(h))
                 .collect(Collectors.toList());
@@ -54,26 +69,35 @@ public class Batallon {
             if (hechizosValidos.isEmpty()) continue;
 
             Hechizo hechizo = hechizosValidos.get(rand.nextInt(hechizosValidos.size()));
-            hechizosPorPersonaje.get(atacante).add(hechizo);
+            
+            // Agregamos al Set para que no lo repita en el futuro
+            hechizosPorPersonaje.get(atacante).add(hechizo); 
 
+            // 3. Ejecutamos pasando por el control de MANÁ
             if (hechizo.esDefensa()) {
-                hechizo.ejecutar(atacante, atacante);
+                atacante.lanzarHechizo(hechizo, atacante);
             } else if (hechizo.esCuracion()) {
                 Personaje objetivo = obtenerMasDebil();
                 if (objetivo != null) {
-                    hechizo.ejecutar(atacante, objetivo);
+                    atacante.lanzarHechizo(hechizo, objetivo);
                 }
             } else {
                 List<Personaje> objetivosVivos = otro.getPersonajesVivos();
                 if (objetivosVivos.isEmpty()) continue;
                 Personaje objetivo = objetivosVivos.get(rand.nextInt(objetivosVivos.size()));
-                hechizo.ejecutar(atacante, objetivo);
+                atacante.lanzarHechizo(hechizo, objetivo);
             }
         }
 
-        limpiarEliminados(otro);
+        // 4. Cada batallón se limpia a sí mismo
+        this.limpiarEliminados();
+        otro.limpiarEliminados();
     }
+<<<<<<< Updated upstream
 
+=======
+    
+>>>>>>> Stashed changes
     private boolean necesitaSerCurado(Personaje p) {
         return (double) p.getPuntosVida() / p.getPuntosVidaMaximos() < 0.7;
     }
@@ -83,12 +107,6 @@ public class Batallon {
         if (h.esCuracion() && !necesitaCuracion) return false;
         return true;
     }
-    //REVISAR
-    private void inicializarRonda() {
-        for (Personaje p : personajes) {
-            p.limpiarProteccion();
-        }
-    }
 
     private Personaje obtenerMasDebil() {
         return personajes.stream()
@@ -96,12 +114,22 @@ public class Batallon {
             .min(Comparator.comparingDouble(p -> (double) p.getPuntosVida() / p.getPuntosVidaMaximos()))
             .orElse(null);
     }
-
-    private void limpiarEliminados(Batallon otro) {
-        personajes.removeIf(p -> !p.estaVivo());
-        otro.personajes.removeIf(p -> !p.estaVivo());
-        personajes.forEach(p -> hechizosPorPersonaje.get(p).clear());
-        otro.personajes.forEach(p -> otro.hechizosPorPersonaje.get(p).clear());
+    ///REVISAR ESTA PARTE
+    // Refactorizado para respetar encapsulamiento y evitar Memory Leaks
+    public void limpiarEliminados() {
+        Iterator<Personaje> iterator = personajes.iterator();
+        while (iterator.hasNext()) {
+            Personaje p = iterator.next();
+            if (!p.estaVivo()) {
+                // Lo borramos del Map para liberar memoria
+                hechizosPorPersonaje.remove(p); 
+                // Lo borramos de la Lista
+                iterator.remove(); 
+            } else {
+                // Si está vivo, solo le vaciamos el Set de hechizos usados para la próxima ronda
+                hechizosPorPersonaje.get(p).clear();
+            }
+        }
     }
 
     public int tamaño() {
@@ -109,7 +137,10 @@ public class Batallon {
     }
 
     public void mostrarEstado() {
+<<<<<<< Updated upstream
         System.out.println("--- Estado del Batalion ---");
+=======
+>>>>>>> Stashed changes
         if (personajes.isEmpty()) {
             System.out.println("(vacio)");
         } else {

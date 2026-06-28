@@ -43,4 +43,9 @@ public class ExpectoPatronum implements Hechizo {
     public int hashCode() {
         return getNombre().hashCode();
     }
+	@Override
+	public int getCostoMana() {
+		// TODO Auto-generated method stub
+		return 25;
+	}
 }

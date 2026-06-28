@@ -15,4 +15,9 @@ public abstract class Mago extends Personaje {
     public int calcularDanio(Hechizo hechizo, int danioBase) {
         return (int) (danioBase * (1.0 - (100 - nivelMagia) / 200.0));
     }
+    
+    @Override
+    public boolean puedeLanzarMagiaOscura() {
+        return false; 
+    }
 }

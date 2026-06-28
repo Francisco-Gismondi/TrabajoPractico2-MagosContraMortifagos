@@ -1,23 +1,50 @@
 package com.facultad.tp.hechizos;
 
-import batalla.Personaje;
+import com.facultad.tp.Hechizo;
+import com.facultad.tp.Personaje;
+import estados.EstadoRegeneracion;
+
 //CURACION
 public class VulneraSanentur implements Hechizo {
 
 	@Override
 	public void ejecutar(Personaje lanzador, Personaje objetivo) {
 		int curacionBase = 10;
+		int curacionInicial = lanzador.calcularCuracion(this, curacionBase);
+        int curacionPorTurno = curacionInicial/2;
+        int turnosDeRegeneracion = 3;
+				
+		objetivo.curar(curacionInicial);
 		
-		int curacionFinal = curacionBase * lanzador.obtenerAfinidadCuracion();
+		System.out.println(" * " + lanzador.getNombre() + " lanza Vulnera Sanentur sobre " 
+                + objetivo.getNombre() + ". Se curan " + curacionInicial + " puntos de vida y sus heridas comienzan a cerrarse lentamente.");
 		
-		objetivo.curarVida(curacionFinal);
-		
-		System.out.println(lanzador.getNombre() + " lanza Vulnera Sanentur sobre " 
-                + objetivo.getNombre() + ". Se curan " + curacionFinal + " puntos de vida y sus heridas comienzan a cerrarse lentamente.");
-		
-		// En el motor de turnos, el objetivo debería recibir un estado de "Regeneración"
-        // objetivo.aplicarEstado(new EstadoRegeneracion(5 * lanzador.obtenerAfinidadCuracion(), 3));
-		// (Ejemplo: cura X puntos extra durante los próximos 3 turnos)
+        objetivo.setEstado(new EstadoRegeneracion(curacionPorTurno,turnosDeRegeneracion));
+
 	}
-	
+
+	@Override
+	public String getNombre() {
+		return "Vulnera Sanentur";
+	}
+
+	@Override
+	public boolean esAtaque() {
+		return false;
+	}
+
+	@Override
+	public boolean esDefensa() {
+		return false;
+	}
+
+	@Override
+	public boolean esCuracion() {
+		return true;
+	}
+	@Override
+	public int getCostoMana() {
+		// TODO Auto-generated method stub
+		return 25;
+	}
 }

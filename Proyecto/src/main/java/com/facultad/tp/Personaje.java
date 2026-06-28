@@ -2,6 +2,8 @@ package com.facultad.tp;
 import estados.*;
 import java.util.List;
 
+import com.facultad.tp.hechizos.SobrecargaMagica;
+
 public abstract class Personaje {
     protected String nombre;
     protected int nivelMagia;
@@ -36,8 +38,8 @@ public abstract class Personaje {
     
     // Modificamos recibirDanio para que delegue la responsabilidad al estado actual
     
-    public void recibirDanio(int danio) {
-        this.estadoActual.recibirDanio(this, danio);
+    public boolean recibirDanio(int danio) {
+        return this.estadoActual.recibirDanio(this, danio);
     }
 
     // Método interno que los estados llamarán para restar la vida
@@ -49,7 +51,20 @@ public abstract class Personaje {
         }
     }
     
-    
+    public void lanzarHechizo(Hechizo hechizo, Personaje objetivo) {
+        // 1. Verificamos si tiene maná suficiente
+        if (this.manaActual >= hechizo.getCostoMana()) {
+            this.manaActual -= hechizo.getCostoMana();
+            
+            hechizo.ejecutar(this, objetivo);
+            
+        } else {
+            // 2. Si NO tiene maná, forzamos la sobrecarga mágica
+            System.out.println("  * "+this.nombre + " intentó usar magia sin maná suficiente...");
+            Hechizo castigo = new SobrecargaMagica();
+            castigo.ejecutar(this, objetivo);
+        }
+    }
     public int calcularDanio(Hechizo hechizo, int danioBase) {
         return danioBase;
     }
@@ -90,9 +105,11 @@ public abstract class Personaje {
     public List<Hechizo> getHechizos() {
         return hechizos;
     }
+    
+    public abstract boolean puedeLanzarMagiaOscura();
 
     @Override
     public String toString() {
-        return nombre + " (PV: " + puntosVida + "/" + puntosVidaMaximos + ", Magia: " + nivelMagia + ")";
+        return nombre + " (PV: " + puntosVida + "/" + puntosVidaMaximos + ", Magia: " + nivelMagia + ", Mana: " + manaActual + "/" + manaMaximo + ")";
     }
 }
