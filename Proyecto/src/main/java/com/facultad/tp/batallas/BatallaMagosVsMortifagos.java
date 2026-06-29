@@ -1,6 +1,9 @@
-package com.facultad.tp;
+package com.facultad.tp.batallas;
 
 import java.util.Random;
+
+import com.facultad.tp.Batallon;
+import com.facultad.tp.Reclutador;
 
 public class BatallaMagosVsMortifagos {
 

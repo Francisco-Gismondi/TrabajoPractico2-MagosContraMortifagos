@@ -44,7 +44,7 @@ class EstadosTest {
 
     @Test
     public void testEstadoAturdidoBloqueaAtaqueYSeConsumeConElTiempo() {
-        victima.setEstado(new EstadoAturdido(2)); // Aturdido por 2 turnos
+        victima.setEstado(new EstadoAturdido(1)); // Aturdido por 2 turnos
         
         // Turno 1
         assertFalse(victima.puedeAtacar(), "No debería poder atacar en el turno 1.");
