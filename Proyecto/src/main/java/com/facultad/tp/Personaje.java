@@ -117,6 +117,7 @@ public abstract class Personaje {
 
     @Override
     public String toString() {
-        return nombre + " (PV: " + puntosVida + "/" + puntosVidaMaximos + ", Magia: " + nivelMagia + ", Mana: " + manaActual + "/" + manaMaximo + ")";
+        return String.format("%s\t|PV: %d/%d,\tMagia: %d,\tMana: %d/%d|", 
+            nombre, puntosVida, puntosVidaMaximos, nivelMagia, manaActual, manaMaximo);
     }
 }
