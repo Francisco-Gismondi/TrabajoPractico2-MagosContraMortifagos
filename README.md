@@ -31,25 +31,24 @@ Es un trabajo práctico para la asignatura **Paradigmas de Programación**, demo
 
 ### Sistema de Hechizos
 
-Más de 10 hechizos diferentes con efectos variados:
+Más de 10 hechizos diferentes con efectos variados.Los hechizos se dividen en tres categorías principales:
 
 #### Hechizos Ofensivos
 
-- **Avada Kedavra**: Hechizo letal instantáneo
-- **Crucio**: Hechizo de tortura con daño continuo
-- **Sectumsempra**: Cortes mágicos
-- **Desmaius**: Desmayar al oponente
+- **Avada Kedavra**: Hechizo de ataque que inflige daño al objetivo. Es un hechizo muy poderoso y mortal.
+- **Crucio**: Hechizo que inflige daño y aturde al objetivo. Solo puede ser lanzado por personajes que puedan usar magia oscura.
+- **Sectumsempra**: Hechizo de ataque que inflige daño y aplica un estado de sangrado al objetivo.
 
 #### Hechizos Defensivos
 
-- **Protego**: Escudo protector
-- **Expecto Patronum**: Invocación defensiva
-- **Finite Incantatem**: Contramagia
+- **Protego**: Escudo protector.
+- **Finite Incantatem**: Hechizo que anula todos los efectos mágicos en el objetivo, devolviéndolo a su estado normal.
 
 #### Hechizos de Apoyo
 
-- **Vulnera Sanentur**: Curación mágica
-- **Sobrecarga Mágica**: Amplificación de poder
+- **Vulnera Sanentur**: Hechizo de curación que restaura la salud del objetivo y aplica un efecto de regeneración durante varios turnos.
+
+Y muchos más… cada hechizo abre nuevas posibilidades estratégicas.
 
 ### Sistema de Estados
 
@@ -62,41 +61,6 @@ Los personajes pueden experimentar diferentes estados que afectan su capacidad d
 - **Sangrado**: Pierde vida cada ronda
 - **Regeneración**: Recupera vida
 - **Furia**: Ataca con poder aumentado
-
----
-
-## 📁 Estructura del Proyecto
-
-```
-TrabajoPractico2-MagosContraMortifagos/
-│
-├── README.md                          # Este archivo
-├── Proyecto/                          # Carpeta principal del proyecto
-│   ├── pom.xml                        # Configuración Maven
-│   ├── src/
-│   │   ├── main/
-│   │   │   └── java/
-│   │   │       └── com/facultad/tp/
-│   │   │           ├── Personaje.java            # Clase base de personajes
-│   │   │           ├── Mago.java                 # Personaje Mago
-│   │   │           ├── Mortifago.java            # Personaje Mortífago
-│   │   │           ├── Batallon.java             # Gestión de batallones
-│   │   │           ├── BatallaMagosVsMortifagos  # Simulador principal
-│   │   │           ├── Hechizo.java              # Interface de hechizos
-│   │   │           ├── FabricaHechizos.java      # Factory pattern
-│   │   │           ├── hechizos/                 # Implementaciones de hechizos
-│   │   │           │   ├── AvadaKedavra.java
-│   │   │           │   ├── Protego.java
-│   │   │           │   └── ... (12+ hechizos)
-│   │   │           └── estados/                  # Sistema de estados
-│   │   │               ├── EstadoPersonaje.java  # Interface base
-│   │   │               ├── EstadoNormal.java
-│   │   │               ├── EstadoAturdido.java
-│   │   │               └── ... (7 estados)
-│   │   └── test/
-│   │       └── java/                 # Tests unitarios
-│   └── target/                        # Compilación Maven
-```
 
 ---
 
