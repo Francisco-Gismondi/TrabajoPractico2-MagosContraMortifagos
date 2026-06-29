@@ -2,6 +2,8 @@ package com.facultad.tp;
 
 import org.junit.jupiter.api.Test;
 
+import com.facultad.tp.hechizos.Protego;
+
 import estados.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -16,35 +18,35 @@ public class PersonajeTest {
         assertEquals(150, auror.getPuntosVida());
         assertEquals(150, auror.getPuntosVidaMaximos());
         assertTrue(auror.estaVivo());
-        assertEquals(3, auror.getHechizos().size());
+        assertEquals(5, auror.getHechizos().size());
     }
 
     @Test
     public void testCreacionEstudiante() {
         Estudiante estudiante = new Estudiante("Ron", 45, 90,100);
         assertEquals("Ron", estudiante.getNombre());
-        assertEquals(2, estudiante.getHechizos().size());
+        assertEquals(3, estudiante.getHechizos().size());
     }
 
     @Test
     public void testCreacionProfesor() {
         Profesor profesor = new Profesor("Dumbledore", 95, 180,100);
         assertEquals("Dumbledore", profesor.getNombre());
-        assertEquals(3, profesor.getHechizos().size());
+        assertEquals(4, profesor.getHechizos().size());
     }
 
     @Test
     public void testCreacionSeguidor() {
         Seguidor seguidor = new Seguidor("Mortifago1", 60, 110,100);
         assertEquals("Mortifago1", seguidor.getNombre());
-        assertEquals(2, seguidor.getHechizos().size());
+        assertEquals(3, seguidor.getHechizos().size());
     }
 
     @Test
     public void testCreacionComandante() {
         Comandante comandante = new Comandante("Voldemort", 90, 200,100);
         assertEquals("Voldemort", comandante.getNombre());
-        assertEquals(3, comandante.getHechizos().size());
+        assertEquals(5, comandante.getHechizos().size());
     }
 
     @Test
@@ -66,10 +68,12 @@ public class PersonajeTest {
     @Test
     public void testRecibirDanioConProtego() {
         Auror auror = new Auror("Harry", 85, 150,100);
-        auror.setEstado(new EstadoEscudo(100));
-        auror.recibirDanio(100);
-        assertEquals(100, auror.getPuntosVida());
-        assertFalse(auror.estaProtegido());
+        Protego prot = new Protego();
+        prot.ejecutar(auror, auror);
+        auror.recibirDanio(20);
+        
+        
+        assertEquals(150, auror.getPuntosVida(),"El mago no deberia recibir daño");
     }
 
     @Test

@@ -10,7 +10,7 @@ public class Desmaius implements Hechizo{
 
 	@Override
 	public void ejecutar(Personaje lanzador, Personaje objetivo) {
-		int dañoBase = 20;
+		int dañoBase = 5;
 		int dañoFinal = lanzador.calcularDanio(this, dañoBase);
         int turnos = 1;
         System.out.println(" * " + lanzador.getNombre() + " lanza Desmaius. "); 
