@@ -17,7 +17,7 @@ public class VulneraSanentur implements Hechizo {
 		objetivo.curar(curacionInicial);
 		
 		System.out.println(" * " + lanzador.getNombre() + " lanza Vulnera Sanentur sobre " 
-                + objetivo.getNombre() + ". Se curan " + curacionInicial + " puntos de vida y sus heridas comienzan a cerrarse lentamente.");
+                + objetivo.getNombre() + ".\n Se curan " + curacionInicial + " puntos de vida y sus heridas comienzan a cerrarse lentamente.");
 		
         objetivo.setEstado(new EstadoRegeneracion(curacionPorTurno,turnosDeRegeneracion));
 

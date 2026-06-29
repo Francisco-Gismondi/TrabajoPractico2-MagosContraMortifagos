@@ -42,18 +42,21 @@ public class Batallon {
         // 1. Aplicamos venenos, curaciones continuas, etc.
         this.procesarInicioDeRonda(); 
 
+        // Guardamos los hechizos que el batallon uso este turno (al principio esta vacia)
+        Set<String> nombresHechizosUsados = new HashSet<>();
+
         List<Personaje> atacantes = new ArrayList<>(personajes);
 
         for (Personaje atacante : atacantes) {
             // 2. Validamos vida y EL ESTADO (Aturdido, etc.)
             if (!atacante.estaVivo() || !atacante.puedeAtacar()) continue;
 
-            // Filtramos hechizos no repetidos en la ronda (usando el Set)
+            // Filtramos hechizos que NO hayan sido usados por NADIE del batallón en este turno
             List<Hechizo> hechizosDisponibles = atacante.getHechizos().stream()
-                .filter(h -> !hechizosPorPersonaje.get(atacante).contains(h))
+                .filter(h -> !nombresHechizosUsados.contains(h.getNombre()))
                 .collect(Collectors.toList());
 
-            if (hechizosDisponibles.isEmpty()) continue;
+            if (hechizosDisponibles.isEmpty()) continue; // Se quedó sin opciones, pasa al siguiente mago
 
             boolean necesitaCuracion = necesitaSerCurado(atacante);
             boolean enemigosVivos = !otro.getPersonajesVivos().isEmpty();
@@ -62,12 +65,12 @@ public class Batallon {
                 .filter(h -> esHechizoValido(h, necesitaCuracion, enemigosVivos))
                 .collect(Collectors.toList());
 
-            if (hechizosValidos.isEmpty()) continue;
+            if (hechizosValidos.isEmpty()) continue; // No tiene hechizos tácticamente válidos, pasa
 
             Hechizo hechizo = hechizosValidos.get(rand.nextInt(hechizosValidos.size()));
             
-            // Agregamos al Set para que no lo repita en el futuro
-            hechizosPorPersonaje.get(atacante).add(hechizo); 
+            // Bloqueamos el NOMBRE del hechizo para que ningún compañero lo repita
+            nombresHechizosUsados.add(hechizo.getNombre()); 
 
             // 3. Ejecutamos pasando por el control de MANÁ
             if (hechizo.esDefensa()) {
