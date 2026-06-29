@@ -13,7 +13,6 @@ public class EstadoAturdido implements EstadoPersonaje {
 	@Override
 	public void inicioDeTurno(Personaje personaje) {
 		
-		this.turnosRestantes--;
 		if (this.turnosRestantes <= 0) {
             System.out.println("  + " + personaje.getNombre() + " se ha recuperado del aturdimiento.");
             personaje.setEstado(new EstadoNormal()); // Vuelve a la normalidad
@@ -21,6 +20,7 @@ public class EstadoAturdido implements EstadoPersonaje {
 		else {
 			System.out.println("  + " + personaje.getNombre() + " esta aturdido. Turnos restantes: " + this.turnosRestantes);
 		}
+		this.turnosRestantes--;
 			
 	}
 
