@@ -15,6 +15,13 @@ public class Expelliarmus implements Hechizo {
         int danioBase = 25;
         int danioFinal = lanzador.calcularDanio(this, danioBase);
         System.out.println(" * " + lanzador.getNombre() + " lanza Expelliarmus.");
+        
+        // lo desarma como en HarryPotter 
+        if (objetivo.tieneObjetosEquipados()) {
+            System.out.println("  -> " + objetivo.getNombre() + " pierde sus objetos por el impacto!");
+            objetivo.desequiparTodos();
+        }
+
         objetivo.recibirDanio(danioFinal);
         System.out.println(lanzador.getNombre() + " lanza Expelliarmus a " + objetivo.getNombre()
         objetivo.recibirDanio(danioFinal);
