@@ -9,8 +9,7 @@ public class CaveInimicum implements Hechizo {
 
 	@Override
 	public void ejecutar(Personaje lanzador, Personaje objetivo) {
-		System.out.println(" * " + lanzador.getNombre() + " lanza Cave Inimicum. " + objetivo.getNombre()
-				+ " se vuelve invisible y evitara el proximo ataque.");
+		System.out.println(" * " + lanzador.getNombre() + " lanza Cave Inimicum, se vuelve invisible y evitara el proximo ataque.");
 		objetivo.setEstado(new EstadoEvasion());
 	}
 

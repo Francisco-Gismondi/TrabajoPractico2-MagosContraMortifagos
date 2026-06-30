@@ -17,6 +17,8 @@ public class Imperio implements Hechizo {
 			System.out.println("  -> Pero no logra controlar a " + objetivo.getNombre());
 			return;
 		}
+		System.out.println(" * " + lanzador.getNombre() + " logra controlar al objetivo");
+		System.out.println("  -> " + objetivo.getNombre() + " se inflije daño a si mismo por culpa de imperio");
 		objetivo.recibirDanio(danioFinal);
 
 	}
