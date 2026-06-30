@@ -12,7 +12,7 @@ public class EstadoFuria implements EstadoPersonaje{
 
     @Override
     public boolean recibirDanio(Personaje personaje, int cantidad) {
-        System.out.println("  -> " + personaje.getNombre() + " ignora el dolor cegado por la ira.");
+        System.out.println("  -> " + personaje.getNombre() + " ignora el dolor cegado por el frenesí del combate.");
         int danioCegado = (int) (cantidad * 0.7); //Le hacen menos daño
         personaje.restarVidaInterno(danioCegado);
         return true;
@@ -21,7 +21,7 @@ public class EstadoFuria implements EstadoPersonaje{
     @Override
     public int potenciarDanio(Personaje personaje, int danioBase) {
         int  danioPotenciado = (int) (danioBase *1.5);
-    	System.out.println("  -> ¡" + personaje.getNombre() + " explota de bronca y da un golpe tremendo!");
+    	System.out.println("  -> ¡" + personaje.getNombre() + " busca venganza y lanza un ataque potenciado!");
         
         personaje.setEstado(new EstadoNormal()); 
 

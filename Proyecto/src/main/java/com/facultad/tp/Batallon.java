@@ -69,16 +69,16 @@ public class Batallon {
 
             if (hechizosDisponibles.isEmpty()) continue; // Se quedó sin opciones, pasa al siguiente mago
 
-            boolean necesitaCuracion = necesitaSerCurado(atacante);
+            boolean necesitaCuracion = necesitaSerCurado(atacante);			//se fija si esta herido
             boolean enemigosVivos = !otro.getPersonajesVivos().isEmpty();
 
-            List<Hechizo> hechizosValidos = hechizosDisponibles.stream()
-                .filter(h -> esHechizoValido(h, necesitaCuracion, enemigosVivos))
-                .collect(Collectors.toList());
+            List<Hechizo> hechizosValidos = hechizosDisponibles.stream() 			//arma una lista entre los hechizos que sabe,
+                .filter(h -> esHechizoValido(h, necesitaCuracion, enemigosVivos)) 	//los que no se usaron en esta ronda 
+                .collect(Collectors.toList());										//y de curacion en caso de que haya heridos
 
-            if (hechizosValidos.isEmpty()) continue; // No tiene hechizos tácticamente válidos, pasa
+            if (hechizosValidos.isEmpty()) continue; // No tiene hechizos válidos, pasa
 
-            Hechizo hechizo = hechizosValidos.get(rand.nextInt(hechizosValidos.size()));
+            Hechizo hechizo = hechizosValidos.get(rand.nextInt(hechizosValidos.size())); //elije un hechizo al azar
             
             // Bloqueamos el NOMBRE del hechizo para que ningún compañero lo repita
             nombresHechizosUsados.add(hechizo.getNombre()); 
