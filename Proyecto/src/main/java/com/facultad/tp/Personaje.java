@@ -80,7 +80,6 @@ public abstract class Personaje {
             danio = obj.modificarDanio(hechizo, danio);
         }
         return Math.max(0, danio);
-    	return this.estadoActual.potenciarDanio(this, danioBase);
     }
     
     public void notificarCaidaAliado(Personaje aliadoCaido) {
@@ -126,6 +125,8 @@ public abstract class Personaje {
     public EstadoPersonaje getEstadoActual() {
         return this.estadoActual;
     }
+    
+    
     
     public void agregarObjeto(ObjetoMagico obj) {
         inventario.add(obj);
@@ -182,8 +183,6 @@ public abstract class Personaje {
         manaActual = Math.min(manaMaximo, manaActual + cantidad);
     }
 
-
-
     public abstract boolean puedeLanzarMagiaOscura();
 
     @Override
@@ -201,9 +200,5 @@ public abstract class Personaje {
         if (!eq.isEmpty()) res += "eq:[" + eq + "]";
         if (!inv.isEmpty()) res += (res.isEmpty() ? "" : " ") + "inv:[" + inv + "]";
         return res;
-
-        return String.format("%s\t|PV: %d/%d,\tMagia: %d,\tMana: %d/%d|", 
-            nombre, puntosVida, puntosVidaMaximos, nivelMagia, manaActual, manaMaximo);
-
     }
 }
