@@ -1,6 +1,7 @@
 package com.facultad.tp.batallas;
 
 import java.util.Random;
+import java.util.Scanner;
 
 import com.facultad.tp.Batallon;
 import com.facultad.tp.Reclutador;
@@ -8,6 +9,7 @@ import com.facultad.tp.Reclutador;
 public class BatallaMagosVsMortifagos {
 
     public static void main(String[] args) {
+    	Scanner teclado = new Scanner(System.in);
     	System.out.println("======================================================================");
         System.out.println("                     BATALLA: MAGOS vs MORTIFAGOS");
         System.out.println("======================================================================");
@@ -61,7 +63,10 @@ public class BatallaMagosVsMortifagos {
             System.out.println("Mortifagos (" + batallonMortifagos.tamaño() + "):");
             batallonMortifagos.mostrarEstado();
             System.out.println("----------------------------------------------------------------------");
-
+            
+            System.out.print("Presiona enter para pasar la ronda... ");
+            teclado.nextLine();
+            
             if (ronda >= 50) {
                 System.out.println("\nLa batalla ha llegado a su limite de rondas.");
                 break;

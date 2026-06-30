@@ -27,28 +27,28 @@ public class Reclutador {
         nombresUnicosMagos.add("Remus Lupin");
         nombresUnicosMagos.add("Sirius Black");
         nombresUnicosMagos.add("Gandalf");
-        nombresUnicosMagos.add("Ojo-loco Moody");
+        nombresUnicosMagos.add("Ojoloco Moody");
         nombresUnicosMagos.add("Neville");
         Collections.shuffle(nombresUnicosMagos);
 
         // Miembros destacados de los Mortífagos y aliados oscuros
-        nombresUnicosMortifagos.add("Lord Voldemort");
+        nombresUnicosMortifagos.add("Voldemort");
         nombresUnicosMortifagos.add("Bellatrix");
         nombresUnicosMortifagos.add("Severus Snape");
         nombresUnicosMortifagos.add("Lucius Malfoy");
         nombresUnicosMortifagos.add("Draco Malfoy");
-        nombresUnicosMortifagos.add("Barty CrouchJr");
+        nombresUnicosMortifagos.add("BartyCrouchJr");
         nombresUnicosMortifagos.add("Regulus Black");
-        nombresUnicosMortifagos.add("Antonin Dolohov");
+        nombresUnicosMortifagos.add("Antonin D.");
         Collections.shuffle(nombresUnicosMortifagos);
     }
     
     private static void asignarObjetos(Personaje p) {
-        ObjetoMagico obj1 = FabricaObjetos.crearObjetoAleatorio();
-        p.agregarObjeto(obj1);
-        p.equipar(obj1);
-        if (rand.nextBoolean()) {
-            p.agregarObjeto(FabricaObjetos.crearObjetoAleatorio());
+        // 20% de probabilidad de tener un objeto equipado (0 o 1 en un dado de 10)
+        if (rand.nextInt(10) < 4) { 
+            ObjetoMagico obj = FabricaObjetos.crearObjetoAleatorio();
+            p.agregarObjeto(obj);
+            p.equipar(obj);
         }
     }
 
