@@ -2,6 +2,8 @@ package com.facultad.tp;
 
 import java.util.*;
 import java.util.stream.Collectors;
+
+import com.facultad.tp.objetos.ObjetoMagico;
 public class Batallon {
 
     private List<Personaje> personajes;
@@ -50,6 +52,15 @@ public class Batallon {
         for (Personaje atacante : atacantes) {
             // 2. Validamos vida y EL ESTADO (Aturdido, etc.)
             if (!atacante.estaVivo() || !atacante.puedeAtacar()) continue;
+
+            // 2b. Equipamiento automático durante la batalla
+            if (atacante.tieneObjetosEnInventario()) {
+                if (atacante.getObjetosEquipados().isEmpty()) {
+                    ObjetoMagico obj = atacante.getInventario().get(0);
+                    System.out.println("  ~ " + atacante.getNombre() + " equipa " + obj.getNombre());
+                    atacante.equipar(obj);
+                }
+            }
 
             // Filtramos hechizos que NO hayan sido usados por NADIE del batallón en este turno
             List<Hechizo> hechizosDisponibles = atacante.getHechizos().stream()
@@ -143,7 +154,12 @@ public class Batallon {
             System.out.println("   (vacio)");
         } else {
             for (Personaje p : personajes) {
-                System.out.println("  " + p);
+                String items = p.mostrarItems();
+                if (!items.isEmpty()) {
+                    System.out.println("  " + p + "  " + items);
+                } else {
+                    System.out.println("  " + p);
+                }
             }
         }
     }

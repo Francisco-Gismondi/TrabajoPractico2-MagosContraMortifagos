@@ -1,17 +1,43 @@
-C:\Franco\02 - Facultad\tp_para\src\main\java\com\facultad\tp\Auror.java
-C:\Franco\02 - Facultad\tp_para\src\main\java\com\facultad\tp\BatallaMagosVsMortifagos.java
-C:\Franco\02 - Facultad\tp_para\src\main\java\com\facultad\tp\Batallon.java
-C:\Franco\02 - Facultad\tp_para\src\main\java\com\facultad\tp\Comandante.java
-C:\Franco\02 - Facultad\tp_para\src\main\java\com\facultad\tp\Estudiante.java
-C:\Franco\02 - Facultad\tp_para\src\main\java\com\facultad\tp\FabricaHechizos.java
-C:\Franco\02 - Facultad\tp_para\src\main\java\com\facultad\tp\Hechizo.java
-C:\Franco\02 - Facultad\tp_para\src\main\java\com\facultad\tp\hechizos\AvadaKedavra.java
-C:\Franco\02 - Facultad\tp_para\src\main\java\com\facultad\tp\hechizos\ExpectoPatronum.java
-C:\Franco\02 - Facultad\tp_para\src\main\java\com\facultad\tp\hechizos\Expelliarmus.java
-C:\Franco\02 - Facultad\tp_para\src\main\java\com\facultad\tp\hechizos\Protego.java
-C:\Franco\02 - Facultad\tp_para\src\main\java\com\facultad\tp\Mago.java
-C:\Franco\02 - Facultad\tp_para\src\main\java\com\facultad\tp\Mortifago.java
-C:\Franco\02 - Facultad\tp_para\src\main\java\com\facultad\tp\Personaje.java
-C:\Franco\02 - Facultad\tp_para\src\main\java\com\facultad\tp\Profesor.java
-C:\Franco\02 - Facultad\tp_para\src\main\java\com\facultad\tp\Reclutador.java
-C:\Franco\02 - Facultad\tp_para\src\main\java\com\facultad\tp\Seguidor.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\com\facultad\tp\Auror.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\com\facultad\tp\batallas\BatallaMagosVsMortifagos.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\com\facultad\tp\batallas\DemoEstados.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\com\facultad\tp\batallas\DemoFuria.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\com\facultad\tp\batallas\DemoObjetos.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\com\facultad\tp\Batallon.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\com\facultad\tp\Comandante.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\com\facultad\tp\Estudiante.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\com\facultad\tp\FabricaHechizos.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\com\facultad\tp\Hechizo.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\com\facultad\tp\hechizos\AvadaKedavra.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\com\facultad\tp\hechizos\CaveInimicum.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\com\facultad\tp\hechizos\Crucio.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\com\facultad\tp\hechizos\Desmaius.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\com\facultad\tp\hechizos\ExpectoPatronum.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\com\facultad\tp\hechizos\Expelliarmus.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\com\facultad\tp\hechizos\FiniteIncantatem.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\com\facultad\tp\hechizos\HechizoAtaqueBasico.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\com\facultad\tp\hechizos\HechizoCuracionBasico.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\com\facultad\tp\hechizos\Imperio.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\com\facultad\tp\hechizos\Protego.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\com\facultad\tp\hechizos\Sectumsempra.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\com\facultad\tp\hechizos\SobrecargaMagica.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\com\facultad\tp\hechizos\VulneraSanentur.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\com\facultad\tp\Mago.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\com\facultad\tp\Mortifago.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\com\facultad\tp\objetos\AmuletoMana.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\com\facultad\tp\objetos\CapaInvisibilidad.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\com\facultad\tp\objetos\FabricaObjetos.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\com\facultad\tp\objetos\ObjetoMagico.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\com\facultad\tp\objetos\VaritaMagica.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\com\facultad\tp\Personaje.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\com\facultad\tp\Profesor.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\com\facultad\tp\Reclutador.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\com\facultad\tp\Seguidor.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\estados\EstadoAturdido.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\estados\EstadoEscudo.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\estados\EstadoEvasion.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\estados\EstadoFuria.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\estados\EstadoNormal.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\estados\EstadoPersonaje.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\estados\EstadoRegeneracion.java
+C:\Users\Asus\Desktop\TrabajoPractico2-MagosContraMortifagos-main\Proyecto\src\main\java\estados\EstadoSangrado.java

@@ -5,12 +5,60 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import com.facultad.tp.objetos.FabricaObjetos;
+import com.facultad.tp.objetos.ObjetoMagico;
+
 public class Reclutador {
 
     private static Random rand = new Random();
     private static int contadorMagos = 0;
     private static int contadorMortifagos = 0;
     
+    private static List<String> nombresUnicosMagos = new ArrayList<>();
+    private static List<String> nombresUnicosMortifagos = new ArrayList<>();
+
+    static {
+        // Personajes icónicos de la Orden del Fénix y el Ejército de Dumbledore
+        nombresUnicosMagos.add("Harry Potter");
+        nombresUnicosMagos.add("Hermione ");
+        nombresUnicosMagos.add("Ron Weasley");
+        nombresUnicosMagos.add("Dumbledore");
+        nombresUnicosMagos.add("McGonagall");
+        nombresUnicosMagos.add("Remus Lupin");
+        nombresUnicosMagos.add("Sirius Black");
+        nombresUnicosMagos.add("Gandalf");
+        nombresUnicosMagos.add("Ojo-loco Moody");
+        nombresUnicosMagos.add("Neville");
+        Collections.shuffle(nombresUnicosMagos);
+
+        // Miembros destacados de los Mortífagos y aliados oscuros
+        nombresUnicosMortifagos.add("Lord Voldemort");
+        nombresUnicosMortifagos.add("Bellatrix");
+        nombresUnicosMortifagos.add("Severus Snape");
+        nombresUnicosMortifagos.add("Lucius Malfoy");
+        nombresUnicosMortifagos.add("Draco Malfoy");
+        nombresUnicosMortifagos.add("Barty CrouchJr");
+        nombresUnicosMortifagos.add("Regulus Black");
+        nombresUnicosMortifagos.add("Antonin Dolohov");
+        Collections.shuffle(nombresUnicosMortifagos);
+    }
+    
+    private static void asignarObjetos(Personaje p) {
+        ObjetoMagico obj1 = FabricaObjetos.crearObjetoAleatorio();
+        p.agregarObjeto(obj1);
+        p.equipar(obj1);
+        if (rand.nextBoolean()) {
+            p.agregarObjeto(FabricaObjetos.crearObjetoAleatorio());
+        }
+    }
+
+    public static Mago crearMago() {
+        contadorMagos++;
+        
+        Mago mago = switch (rand.nextInt(11)) {
+            // 10% de probabilidad: Héroe Único
+            case 0,10 -> {
+                if (!nombresUnicosMagos.isEmpty()) {
     private static List<String> nombresUnicosMagos = new ArrayList<>();
     private static List<String> nombresUnicosMortifagos = new ArrayList<>();
 
@@ -60,9 +108,17 @@ public class Reclutador {
             
             default -> new Auror("Auror " + contadorMagos, 120 + rand.nextInt(31), 120 + rand.nextInt(81), 150);
         };
+        asignarObjetos(mago);
+        return mago;
     }
 
     public static Mortifago crearMortifago() {
+        contadorMortifagos++;
+        
+        Mortifago mortifago = switch (rand.nextInt(10)) {
+            // 10% de probabilidad: Villano Único
+            case 0 -> {
+                if (!nombresUnicosMortifagos.isEmpty()) {
         contadorMortifagos++;
         
         return switch (rand.nextInt(10)) {
@@ -81,5 +137,7 @@ public class Reclutador {
             
             default -> new Seguidor("Seguidor " + contadorMortifagos, 50 + rand.nextInt(31), 90 + rand.nextInt(51), 110);
         };
+        asignarObjetos(mortifago);
+        return mortifago;
     }
 }

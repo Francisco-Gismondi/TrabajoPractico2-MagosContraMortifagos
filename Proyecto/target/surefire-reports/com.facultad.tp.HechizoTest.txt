@@ -1,4 +1,12 @@
 -------------------------------------------------------------------------------
 Test set: com.facultad.tp.HechizoTest
 -------------------------------------------------------------------------------
-Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.044 s -- in com.facultad.tp.HechizoTest
+Tests run: 12, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.067 s <<< FAILURE! -- in com.facultad.tp.HechizoTest
+com.facultad.tp.HechizoTest.testFabricaHechizos -- Time elapsed: 0.022 s <<< ERROR!
+java.lang.IllegalArgumentException: Hechizo desconocido: expectopatronum
+	at com.facultad.tp.FabricaHechizos.crearHechizo(FabricaHechizos.java:20)
+	at com.facultad.tp.HechizoTest.testFabricaHechizos(HechizoTest.java:139)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+

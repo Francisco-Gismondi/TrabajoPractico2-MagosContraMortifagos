@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.facultad.tp.PersonajeTest" time="0.055" tests="14" errors="0" skipped="0" failures="1">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.facultad.tp.EstadosTest" time="0.059" tests="8" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="25"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -59,48 +59,44 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="69.0"/>
   </properties>
-  <testcase name="testRecibirDanioMortal" classname="com.facultad.tp.PersonajeTest" time="0.001">
-    <system-out><![CDATA[  -> Harry recibe 150 puntos de daño.
-  ! Harry ha sido eliminado del combate.
+  <testcase name="testEstadoEscudoSeRompeYFiltraDanioSobrante" classname="com.facultad.tp.EstadosTest" time="0.006">
+    <system-out><![CDATA[   ¡El escudo de Sujeto de Prueba se ha roto!
 ]]></system-out>
   </testcase>
-  <testcase name="testMagoCalculaDanioReducido" classname="com.facultad.tp.PersonajeTest" time="0.005">
-    <failure message="El mago deberia reducir el danio base ==&gt; expected: &lt;true&gt; but was: &lt;false&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: El mago deberia reducir el danio base ==> expected: <true> but was: <false>
-	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
-	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
-	at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
-	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
-	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:210)
-	at com.facultad.tp.PersonajeTest.testMagoCalculaDanioReducido(PersonajeTest.java:99)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
-]]></failure>
-  </testcase>
-  <testcase name="testRecibirDanio" classname="com.facultad.tp.PersonajeTest" time="0.003">
-    <system-out><![CDATA[  -> Harry recibe 50 puntos de daño.
+  <testcase name="testEstadoAturdidoBloqueaAtaqueYSeConsumeConElTiempo" classname="com.facultad.tp.EstadosTest" time="0.008">
+    <system-out><![CDATA[  + Sujeto de Prueba esta aturdido. Turnos restantes: 1
+  + Sujeto de Prueba se ha recuperado del aturdimiento.
 ]]></system-out>
   </testcase>
-  <testcase name="testCreacionProfesor" classname="com.facultad.tp.PersonajeTest" time="0.001"/>
-  <testcase name="testCreacionAuror" classname="com.facultad.tp.PersonajeTest" time="0.002"/>
-  <testcase name="testMagoCalculaCuracionAumentada" classname="com.facultad.tp.PersonajeTest" time="0.001"/>
-  <testcase name="testCuracion" classname="com.facultad.tp.PersonajeTest" time="0.002">
-    <system-out><![CDATA[  -> Harry recibe 80 puntos de daño.
-  + Harry se ha curado 40 puntos de vida (PV: 110/150)
+  <testcase name="testEstadoRegeneracionCuraVidaPorTurno" classname="com.facultad.tp.EstadosTest" time="0.006">
+    <system-out><![CDATA[  -> Sujeto de Prueba recibe 50 puntos de daño.
+  + Sujeto de Prueba se ha curado 15 puntos de vida (PV: 65/100)
+  + Sujeto de Prueba regenera 15 puntos de vida.
+  + Sujeto de Prueba se ha curado 15 puntos de vida (PV: 80/100)
+  + Sujeto de Prueba regenera 15 puntos de vida.
 ]]></system-out>
   </testcase>
-  <testcase name="testCreacionComandante" classname="com.facultad.tp.PersonajeTest" time="0.002"/>
-  <testcase name="testMortifagoCalculaDanioAumentado" classname="com.facultad.tp.PersonajeTest" time="0.0"/>
-  <testcase name="testPolimorfismoDanio" classname="com.facultad.tp.PersonajeTest" time="0.001"/>
-  <testcase name="testRecibirDanioConProtego" classname="com.facultad.tp.PersonajeTest" time="0.008">
-    <system-out><![CDATA[ * Harry lanza protego y genera un escudo de 56 puntos.
-   El escudo de Harry absorbió el ataque. Escudo restante: 36
+  <testcase name="testEstadoEvasionAnulaPrimerAtaqueYVuelveANormal" classname="com.facultad.tp.EstadosTest" time="0.003">
+    <system-out><![CDATA[  + Sujeto de Prueba evade el ataque por completo gracias a su invisibilidad.
+  -> Sujeto de Prueba recibe 20 puntos de daño.
 ]]></system-out>
   </testcase>
-  <testcase name="testCreacionSeguidor" classname="com.facultad.tp.PersonajeTest" time="0.001"/>
-  <testcase name="testCuracionNoExcedeMaximo" classname="com.facultad.tp.PersonajeTest" time="0.001">
-    <system-out><![CDATA[  + Harry se ha curado 0 puntos de vida (PV: 150/150)
+  <testcase name="testEstadoEscudoAbsorbeDanioParcialYSeMantiene" classname="com.facultad.tp.EstadosTest" time="0.002">
+    <system-out><![CDATA[   El escudo de Sujeto de Prueba absorbió el ataque. Escudo restante: 10
 ]]></system-out>
   </testcase>
-  <testcase name="testCreacionEstudiante" classname="com.facultad.tp.PersonajeTest" time="0.001"/>
+  <testcase name="testEstadoSangradoAplicaDanioPorTurno" classname="com.facultad.tp.EstadosTest" time="0.003">
+    <system-out><![CDATA[  + Sujeto de Prueba sufre 10 puntos de danio por sangrado.
+  + Sujeto de Prueba sufre 10 puntos de danio por sangrado.
+  + El efecto del sangrado en Sujeto de Prueba se ha disipado.
+]]></system-out>
+  </testcase>
+  <testcase name="testEstadoFuriaPotenciaElProximoDanioYSeConsume" classname="com.facultad.tp.EstadosTest" time="0.003">
+    <system-out><![CDATA[  -> ¡Sujeto de Prueba explota de bronca y da un golpe tremendo!
+]]></system-out>
+  </testcase>
+  <testcase name="testEstadoNormalPuedeAtacarYRecibeDanio" classname="com.facultad.tp.EstadosTest" time="0.006">
+    <system-out><![CDATA[  -> Sujeto de Prueba recibe 20 puntos de daño.
+]]></system-out>
+  </testcase>
 </testsuite>
