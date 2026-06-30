@@ -10,7 +10,6 @@ public class AvadaKedavra implements Hechizo {
 		return "Avada Kedavra";
 	}
 
-<<<<<<< Updated upstream
     @Override
     public void ejecutar(Personaje lanzador, Personaje objetivo) {
         int danioBase = 40;
@@ -19,22 +18,6 @@ public class AvadaKedavra implements Hechizo {
             + " causando " + danioFinal + " de danio.");
         objetivo.recibirDanio(danioFinal);
     }
-=======
-	@Override
-	public void ejecutar(Personaje lanzador, Personaje objetivo) {
->>>>>>> Stashed changes
-
-		if (!lanzador.puedeLanzarMagiaOscura()) {
-			System.out.println(lanzador.getNombre()
-					+ " intenta conjurar magia oscura, pero su naturaleza se lo impide. El hechizo falla.");
-			return;
-		}
-
-		int danioBase = 40;
-		int danioFinal = lanzador.calcularDanio(this, danioBase);
-		System.out.println(" * " + lanzador.getNombre() + " lanza Avada Kedavra");
-		objetivo.recibirDanio(danioFinal);
-	}
 
 	@Override
 	public boolean esAtaque() {

@@ -21,7 +21,7 @@ public class EstadoFuria implements EstadoPersonaje{
     @Override
     public int potenciarDanio(Personaje personaje, int danioBase) {
         int  danioPotenciado = (int) (danioBase *1.5);
-    	System.out.println("  -> ¡" + personaje.getNombre() + " estalla de furia y desata un golpe devastador!");
+    	System.out.println("  -> ¡" + personaje.getNombre() + " explota de bronca y da un golpe tremendo!");
         
         personaje.setEstado(new EstadoNormal()); 
 

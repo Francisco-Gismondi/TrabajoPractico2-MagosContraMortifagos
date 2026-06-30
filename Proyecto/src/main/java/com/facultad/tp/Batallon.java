@@ -44,15 +44,15 @@ public class Batallon {
         // 1. Aplicamos venenos, curaciones continuas, etc.
         this.procesarInicioDeRonda(); 
 
+        // Guardamos los hechizos que el batallon uso este turno (al principio esta vacia)
+        Set<String> nombresHechizosUsados = new HashSet<>();
+
         List<Personaje> atacantes = new ArrayList<>(personajes);
 
         for (Personaje atacante : atacantes) {
             // 2. Validamos vida y EL ESTADO (Aturdido, etc.)
             if (!atacante.estaVivo() || !atacante.puedeAtacar()) continue;
 
-<<<<<<< Updated upstream
-            // Filtramos hechizos no repetidos en la ronda (usando el Set)
-=======
             // 2b. Equipamiento automático durante la batalla
             if (atacante.tieneObjetosEnInventario()) {
                 if (atacante.getObjetosEquipados().isEmpty()) {
@@ -63,12 +63,11 @@ public class Batallon {
             }
 
             // Filtramos hechizos que NO hayan sido usados por NADIE del batallón en este turno
->>>>>>> Stashed changes
             List<Hechizo> hechizosDisponibles = atacante.getHechizos().stream()
-                .filter(h -> !hechizosPorPersonaje.get(atacante).contains(h))
+                .filter(h -> !nombresHechizosUsados.contains(h.getNombre()))
                 .collect(Collectors.toList());
 
-            if (hechizosDisponibles.isEmpty()) continue;
+            if (hechizosDisponibles.isEmpty()) continue; // Se quedó sin opciones, pasa al siguiente mago
 
             boolean necesitaCuracion = necesitaSerCurado(atacante);
             boolean enemigosVivos = !otro.getPersonajesVivos().isEmpty();
@@ -77,12 +76,12 @@ public class Batallon {
                 .filter(h -> esHechizoValido(h, necesitaCuracion, enemigosVivos))
                 .collect(Collectors.toList());
 
-            if (hechizosValidos.isEmpty()) continue;
+            if (hechizosValidos.isEmpty()) continue; // No tiene hechizos tácticamente válidos, pasa
 
             Hechizo hechizo = hechizosValidos.get(rand.nextInt(hechizosValidos.size()));
             
-            // Agregamos al Set para que no lo repita en el futuro
-            hechizosPorPersonaje.get(atacante).add(hechizo); 
+            // Bloqueamos el NOMBRE del hechizo para que ningún compañero lo repita
+            nombresHechizosUsados.add(hechizo.getNombre()); 
 
             // 3. Ejecutamos pasando por el control de MANÁ
             if (hechizo.esDefensa()) {
@@ -122,20 +121,26 @@ public class Batallon {
             .min(Comparator.comparingDouble(p -> (double) p.getPuntosVida() / p.getPuntosVidaMaximos()))
             .orElse(null);
     }
-    ///REVISAR ESTA PARTE
-    // Refactorizado para respetar encapsulamiento y evitar Memory Leaks
+
     public void limpiarEliminados() {
+        List<Personaje> caidosEnEstaRonda = new ArrayList<>();
         Iterator<Personaje> iterator = personajes.iterator();
+        
         while (iterator.hasNext()) {
             Personaje p = iterator.next();
             if (!p.estaVivo()) {
-                // Lo borramos del Map para liberar memoria
+                caidosEnEstaRonda.add(p); // Lo guardamos temporalmente
                 hechizosPorPersonaje.remove(p); 
-                // Lo borramos de la Lista
                 iterator.remove(); 
             } else {
-                // Si está vivo, solo le vaciamos el Set de hechizos usados para la próxima ronda
                 hechizosPorPersonaje.get(p).clear();
+            }
+        }
+
+        // Notificamos a los sobrevivientes del mismo batallón
+        for (Personaje caido : caidosEnEstaRonda) {
+            for (Personaje vivo : personajes) {
+                vivo.notificarCaidaAliado(caido);
             }
         }
     }

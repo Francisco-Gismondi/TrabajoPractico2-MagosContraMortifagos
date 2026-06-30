@@ -8,7 +8,8 @@ public abstract class Mortifago extends Personaje {
 
     @Override
     public int calcularDanio(Hechizo hechizo, int danioBase) {
-        return (int) (danioBase * (1.0 + nivelMagia / 80.0));
+        int danioPorAtributos = (int) (danioBase * (1.0 + nivelMagia / 80.0));
+        return super.calcularDanio(hechizo, danioPorAtributos);
     }
 
     @Override

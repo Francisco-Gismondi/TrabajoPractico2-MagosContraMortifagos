@@ -14,7 +14,7 @@ public class BatallonTest {
     @Test
     public void testAgregarPersonaje() {
         Batallon b = new Batallon();
-        b.agregarPersonaje(new Auror("Harry", 85, 150));
+        b.agregarPersonaje(new Auror("Harry", 85, 150, 200));
         assertTrue(b.tienePersonajesSaludables());
         assertEquals(1, b.tamaño());
     }
@@ -22,7 +22,7 @@ public class BatallonTest {
     @Test
     public void testTienePersonajesSaludablesConVivos() {
         Batallon b = new Batallon();
-        Auror auror = new Auror("Harry", 85, 150);
+        Auror auror = new Auror("Harry", 85, 150, 300);
         b.agregarPersonaje(auror);
         assertTrue(b.tienePersonajesSaludables());
     }
@@ -32,18 +32,20 @@ public class BatallonTest {
         Batallon magos = new Batallon();
         Batallon mortifagos = new Batallon();
 
-        Auror auror = new Auror("Harry", 90, 200);
-        Seguidor seguidor = new Seguidor("Mortifago", 50, 200);
+        Auror auror = new Auror("Harry", 90, 200,300);
+        Seguidor seguidor = new Seguidor("Mortifago", 50, 99999,200); //pongo un objetivo con mucha vida
 
         magos.agregarPersonaje(auror);
         mortifagos.agregarPersonaje(seguidor);
 
         int vidaInicial = seguidor.getPuntosVida();
-        magos.atacar(mortifagos);
+        for (int i = 0; i < 10; i++) { //estadisticamente es casi imposible que el mago lanze protego 10 veces seguidas
+            System.out.println("Turno " + (i+1));
+        	magos.atacar(mortifagos); 
+        }
         int vidaFinal = seguidor.getPuntosVida();
 
-        assertTrue(vidaFinal < vidaInicial || vidaFinal == vidaInicial,
-            "El ataque deberia reducir la vida o no hacer danio si uso Protego");
+        assertTrue(vidaFinal < vidaInicial, "El ataque deberia reducir la vida");
     }
 
     @Test
@@ -51,15 +53,15 @@ public class BatallonTest {
         Batallon magos = new Batallon();
         Batallon mortifagos = new Batallon();
 
-        Auror auror = new Auror("Harry", 50, 20);
-        Comandante voldemort = new Comandante("Voldemort", 95, 500);
+        Auror auror = new Auror("Harry", 50, 20, 300);
+        Comandante voldemort = new Comandante("Voldemort", 95, 500, 300);
 
         magos.agregarPersonaje(auror);
         mortifagos.agregarPersonaje(voldemort);
 
         int rondas = 0;
-        while (magos.tienePersonajesSaludables() && rondas < 10) {
-            mortifagos.atacar(magos);
+        while (magos.tienePersonajesSaludables()) {
+            mortifagos.atacar(magos); //el mortifago ataca hasta que el batallon de magos quede vacia
             rondas++;
         }
 
@@ -73,8 +75,8 @@ public class BatallonTest {
         Batallon mortifagos = new Batallon();
 
         for (int i = 0; i < 3; i++) {
-            magos.agregarPersonaje(new Auror("Auror " + i, 70, 150));
-            mortifagos.agregarPersonaje(new Seguidor("Seguidor " + i, 60, 120));
+            magos.agregarPersonaje(new Auror("Auror " + i, 70, 150, 100));
+            mortifagos.agregarPersonaje(new Seguidor("Seguidor " + i, 60, 120, 100));
         }
 
         magos.atacar(mortifagos);
@@ -85,8 +87,8 @@ public class BatallonTest {
     @Test
     public void testGetPersonajesVivos() {
         Batallon b = new Batallon();
-        Auror a1 = new Auror("Harry", 85, 150);
-        Auror a2 = new Auror("Ron", 50, 10);
+        Auror a1 = new Auror("Harry", 85, 150, 200);
+        Auror a2 = new Auror("Ron", 50, 10, 230); //creo un auror con pica vida para matarlo y reducir el batallon
 
         b.agregarPersonaje(a1);
         b.agregarPersonaje(a2);
@@ -101,8 +103,8 @@ public class BatallonTest {
         Batallon magos = new Batallon();
         Batallon mortifagos = new Batallon();
 
-        magos.agregarPersonaje(new Profesor("Dumbledore", 99, 500));
-        mortifagos.agregarPersonaje(new Seguidor("Seguidor debil", 10, 30));
+        magos.agregarPersonaje(new Profesor("Dumbledore", 99, 500, 300));
+        mortifagos.agregarPersonaje(new Seguidor("Seguidor debil", 10, 30, 40));
 
         int rondas = 0;
         while (magos.tienePersonajesSaludables() && mortifagos.tienePersonajesSaludables() && rondas < 30) {
@@ -121,7 +123,7 @@ public class BatallonTest {
     @Test
     public void testMapHechizosPorPersonaje() {
         Batallon b = new Batallon();
-        Auror auror = new Auror("Harry", 85, 150);
+        Auror auror = new Auror("Harry", 85, 150, 120);
         b.agregarPersonaje(auror);
 
         assertTrue(b.getPersonajesVivos().contains(auror));

@@ -21,6 +21,13 @@ public class EstadoNormal implements EstadoPersonaje {
         personaje.restarVidaInterno(cantidad);
         return true;
 	}
+	
+	@Override
+	public int potenciarDanio(Personaje personaje, int danioBase) {
+		// TODO Auto-generated method stub
+		return danioBase;
+	}
+
 
 
 }

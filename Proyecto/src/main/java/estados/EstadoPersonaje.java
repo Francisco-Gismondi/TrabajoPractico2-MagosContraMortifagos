@@ -11,4 +11,6 @@ public interface EstadoPersonaje {
     
     // Define qué pasa cuando alguien le hace daño
     boolean recibirDanio(Personaje personaje, int cantidad);
+    
+    int potenciarDanio(Personaje personaje, int danioBase);
 }

@@ -9,7 +9,7 @@ public class Sectumsempra implements Hechizo {
 
 	@Override
 	public void ejecutar(Personaje lanzador, Personaje objetivo) {
-		int danioBase = 5;
+		int danioBase = 7;
 		int danioTotal = lanzador.calcularDanio(this, danioBase);
 		int turnos = 3;
 		System.out.println(" * " + lanzador.getNombre() + " lanza Sectumsempra. ");

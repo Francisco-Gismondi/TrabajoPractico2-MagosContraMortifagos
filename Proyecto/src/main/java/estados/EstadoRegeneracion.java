@@ -14,13 +14,13 @@ public class EstadoRegeneracion implements EstadoPersonaje {
     
 	@Override
 	public void inicioDeTurno(Personaje personaje) {
+		this.turnosRestantes--;
 		personaje.curar(this.curacionPorTurno);
         System.out.println("  + " + personaje.getNombre() + " regenera " + curacionPorTurno + " puntos de vida.");
 
         if (this.turnosRestantes <= 0) {
             personaje.setEstado(new EstadoNormal());
         }
-        this.turnosRestantes--;
 	}
 
 	@Override
@@ -33,6 +33,12 @@ public class EstadoRegeneracion implements EstadoPersonaje {
 		System.out.println("  -> " + personaje.getNombre() + " recibe " + cantidad + " puntos de daño.");
         personaje.restarVidaInterno(cantidad);
         return true;
+	}
+
+	@Override
+	public int potenciarDanio(Personaje personaje, int danioBase) {
+		// TODO Auto-generated method stub
+		return danioBase;
 	}
 
 

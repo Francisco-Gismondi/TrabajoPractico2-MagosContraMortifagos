@@ -75,17 +75,17 @@ public abstract class Personaje {
         }
     }
     public int calcularDanio(Hechizo hechizo, int danioBase) {
-<<<<<<< Updated upstream
-        return danioBase;
-=======
         int danio = this.estadoActual.potenciarDanio(this, danioBase);
         for (ObjetoMagico obj : objetosEquipados) {
             danio = obj.modificarDanio(hechizo, danio);
         }
         return Math.max(0, danio);
->>>>>>> Stashed changes
+    	return this.estadoActual.potenciarDanio(this, danioBase);
     }
     
+    public void notificarCaidaAliado(Personaje aliadoCaido) {
+        // La mayoría de los personajes ignoran esto por defecto
+    }
     
     public int calcularCuracion(Hechizo hechizo, int curacionBase) {
         return curacionBase;
@@ -123,13 +123,9 @@ public abstract class Personaje {
         return hechizos;
     }
     
-<<<<<<< Updated upstream
-=======
     public EstadoPersonaje getEstadoActual() {
         return this.estadoActual;
     }
-    
-    
     
     public void agregarObjeto(ObjetoMagico obj) {
         inventario.add(obj);
@@ -186,17 +182,14 @@ public abstract class Personaje {
         manaActual = Math.min(manaMaximo, manaActual + cantidad);
     }
 
->>>>>>> Stashed changes
+
+
     public abstract boolean puedeLanzarMagiaOscura();
 
     @Override
     public String toString() {
-<<<<<<< Updated upstream
-        return nombre + " (PV: " + puntosVida + "/" + puntosVidaMaximos + ", Magia: " + nivelMagia + ", Mana: " + manaActual + "/" + manaMaximo + ")";
-=======
         return String.format("%s\t|PV: %d/%d,\tMagia: %d,\tMana: %d/%d|",
             nombre, puntosVida, puntosVidaMaximos, nivelMagia, manaActual, manaMaximo);
->>>>>>> Stashed changes
     }
 
     public String mostrarItems() {
@@ -208,5 +201,9 @@ public abstract class Personaje {
         if (!eq.isEmpty()) res += "eq:[" + eq + "]";
         if (!inv.isEmpty()) res += (res.isEmpty() ? "" : " ") + "inv:[" + inv + "]";
         return res;
+
+        return String.format("%s\t|PV: %d/%d,\tMagia: %d,\tMana: %d/%d|", 
+            nombre, puntosVida, puntosVidaMaximos, nivelMagia, manaActual, manaMaximo);
+
     }
 }

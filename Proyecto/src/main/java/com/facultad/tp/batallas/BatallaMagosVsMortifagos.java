@@ -1,6 +1,9 @@
-package com.facultad.tp;
+package com.facultad.tp.batallas;
 
 import java.util.Random;
+
+import com.facultad.tp.Batallon;
+import com.facultad.tp.Reclutador;
 
 public class BatallaMagosVsMortifagos {
 
@@ -52,7 +55,7 @@ public class BatallaMagosVsMortifagos {
                 }
             }
 
-            System.out.println("\n---------------------------- Estado actual ----------------------------");
+            System.out.println("\n---------------------------- Estado actual ---------------------------");
             System.out.println("Magos (" + batallonMagos.tamaño() + "):");
             batallonMagos.mostrarEstado();
             System.out.println("Mortifagos (" + batallonMortifagos.tamaño() + "):");
@@ -66,13 +69,13 @@ public class BatallaMagosVsMortifagos {
         }
 
         System.out.println("======================================================================");
-        System.out.println("                            RESULTADO FINAL");
+        System.out.println("                           RESULTADO FINAL");
         if (batallonMagos.tienePersonajesSaludables()) {
-            System.out.println("              \u00a1Los magos han ganado la batalla!");
+            System.out.println("                  ¡Los magos han ganado la batalla!");
         } else if (batallonMortifagos.tienePersonajesSaludables()) {
-            System.out.println("              \u00a1Los mortifagos han ganado la batalla!");
+            System.out.println("                  ¡Los mortifagos han ganado la batalla!");
         } else {
-            System.out.println("              \u00a1Empate! Todos han caido.");
+            System.out.println("                  ¡Empate! Todos han caido.");
         }
         System.out.println("======================================================================");
     }

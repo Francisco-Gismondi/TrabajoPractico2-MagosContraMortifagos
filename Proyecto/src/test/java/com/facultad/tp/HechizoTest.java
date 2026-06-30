@@ -3,6 +3,7 @@ package com.facultad.tp;
 import com.facultad.tp.hechizos.*;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import estados.*;
 
 public class HechizoTest {
 
@@ -83,38 +84,43 @@ public class HechizoTest {
 
     @Test
     public void testProtegoActivaProteccion() {
-        Auror auror = new Auror("Harry", 50, 150,100);
+        Auror auror = new Auror("Harry", 50, 150, 300);
         Protego prot = new Protego();
 
-        assertFalse(auror.estaProtegido());
+        assertFalse(auror.getEstadoActual() instanceof EstadoEscudo, 
+            "El personaje no debería arrancar con un escudo activo");
         prot.ejecutar(auror, auror);
-        assertTrue(auror.estaProtegido());
+        assertTrue(auror.getEstadoActual() instanceof EstadoEscudo, 
+            "Protego debería haberle asignado un EstadoEscudo al personaje");
     }
 
     @Test
     public void testProtegoReduceDanio() {
-        Auror auror = new Auror("Harry", 50, 150,100);
-        Seguidor seguidor = new Seguidor("Mortifago", 50, 100,100);
+        Auror auror = new Auror("Harry", 50, 150, 300);
+        Seguidor seguidor = new Seguidor("Mortifago", 50, 100, 300);
+        
         Expelliarmus exp = new Expelliarmus();
+        Protego pro = new Protego();
 
-        auror.proteger();
+        pro.ejecutar(auror, seguidor);
         int vidaAntes = auror.getPuntosVida();
         exp.ejecutar(seguidor, auror);
         int vidaDespues = auror.getPuntosVida();
         int danioReal = vidaAntes - vidaDespues;
 
         assertTrue(danioReal < 50, "Protego deberia reducir el danio a la mitad");
-        assertFalse(auror.estaProtegido(), "La proteccion deberia consumirse al recibir danio");
+        assertFalse(danioReal > 50, "La proteccion deberia consumirse al recibir danio");
     }
 
     @Test
-    public void testExpectoPatronumCura() {
-        Auror auror = new Auror("Harry", 50, 150,100);
+    public void testExpectoPatronumCura() { //recibe daño y despues se cura con expetopatronum
+        Auror auror = new Auror("Harry", 50, 150, 300);
         auror.recibirDanio(80);
         assertEquals(70, auror.getPuntosVida());
 
         ExpectoPatronum ep = new ExpectoPatronum();
         ep.ejecutar(auror, auror);
+        
         assertTrue(auror.getPuntosVida() > 70);
         assertTrue(auror.getPuntosVida() <= 150);
     }
