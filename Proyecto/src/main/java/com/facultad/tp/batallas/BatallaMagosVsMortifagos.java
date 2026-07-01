@@ -68,8 +68,8 @@ public class BatallaMagosVsMortifagos {
             batallonMortifagos.mostrarEstado();
             System.out.println("----------------------------------------------------------------------");
             
-            System.out.print("Presiona enter para pasar la ronda... ");
-            teclado.nextLine();
+            //System.out.print("Presiona enter para pasar la ronda... ");
+            //teclado.nextLine();
             
             if (ronda >= 50) {
                 System.out.println("\nLa batalla ha llegado a su limite de rondas.");

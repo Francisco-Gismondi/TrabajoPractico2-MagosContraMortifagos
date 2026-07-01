@@ -41,19 +41,19 @@ public class Batallon {
     }
 
     public void atacar(Batallon otro) {
-        // 1. Aplicamos venenos, curaciones continuas, etc.
+        // Aplicamos venenos, curaciones continuas, etc.
         this.procesarInicioDeRonda(); 
 
-        // Guardamos los hechizos que el batallon uso este turno (al principio esta vacia)
+        // Guardamos los hechizos que el batallon uso este turno (al principio esta vacia) punto 6 del tp
         Set<String> nombresHechizosUsados = new HashSet<>();
 
         List<Personaje> atacantes = new ArrayList<>(personajes);
 
         for (Personaje atacante : atacantes) {
-            // 2. Validamos vida y EL ESTADO (Aturdido, etc.)
+            // Validamos vida y EL ESTADO de uno de los atacantes6(Aturdido, etc.)
             if (!atacante.estaVivo() || !atacante.puedeAtacar()) continue;
 
-            // 2b. Equipamiento automático durante la batalla
+            // Equipamiento automático durante la batalla
             if (atacante.tieneObjetosEnInventario()) {
                 if (atacante.getObjetosEquipados().isEmpty()) {
                     ObjetoMagico obj = atacante.getInventario().get(0);
@@ -63,18 +63,24 @@ public class Batallon {
             }
 
             // Filtramos hechizos que NO hayan sido usados por NADIE del batallón en este turno
-            List<Hechizo> hechizosDisponibles = atacante.getHechizos().stream()
-                .filter(h -> !nombresHechizosUsados.contains(h.getNombre()))
-                .collect(Collectors.toList());
+            List<Hechizo> hechizosDisponibles = new ArrayList<>();
+            for (Hechizo h : atacante.getHechizos()) {
+                if (!nombresHechizosUsados.contains(h.getNombre())) {
+                    hechizosDisponibles.add(h);
+                }
+            }
 
             if (hechizosDisponibles.isEmpty()) continue; // Se quedó sin opciones, pasa al siguiente mago
 
             boolean necesitaCuracion = necesitaSerCurado(atacante);			//se fija si esta herido
             boolean enemigosVivos = !otro.getPersonajesVivos().isEmpty();
 
-            List<Hechizo> hechizosValidos = hechizosDisponibles.stream() 			//arma una lista entre los hechizos que sabe,
-                .filter(h -> esHechizoValido(h, necesitaCuracion, enemigosVivos)) 	//los que no se usaron en esta ronda 
-                .collect(Collectors.toList());										//y de curacion en caso de que haya heridos
+            List<Hechizo> hechizosValidos = new ArrayList<>();  //
+            for (Hechizo h : hechizosDisponibles) { //hechizos que tiene el personaje + curacion(si hay personaje herido) + los de daño
+                if (esHechizoValido(h, necesitaCuracion, enemigosVivos)) {
+                    hechizosValidos.add(h);
+                }
+            }
 
             if (hechizosValidos.isEmpty()) continue; // No tiene hechizos válidos, pasa
 
@@ -110,8 +116,8 @@ public class Batallon {
     }
 
     private boolean esHechizoValido(Hechizo h, boolean necesitaCuracion, boolean enemigosVivos) {
-        if (h.esAtaque() && !enemigosVivos) return false;
-        if (h.esCuracion() && !necesitaCuracion) return false;
+        if (h.esAtaque() && !enemigosVivos) return false; //si hay un enemigo vivo y el hechizo es de daño entonces es valido
+        if (h.esCuracion() && !necesitaCuracion) return false; //si algun aliado tiene poca vida y el hechizo es de curacion entonces es valido
         return true;
     }
 

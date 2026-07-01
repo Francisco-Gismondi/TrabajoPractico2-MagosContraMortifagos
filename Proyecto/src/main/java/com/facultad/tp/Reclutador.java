@@ -18,7 +18,7 @@ public class Reclutador {
     private static List<String> nombresUnicosMortifagos = new ArrayList<>();
 
     static {
-        // Personajes icónicos de la Orden del Fénix y el Ejército de Dumbledore
+        // Personajes buenos de las peliculas
         nombresUnicosMagos.add("Harry Potter");
         nombresUnicosMagos.add("Hermione ");
         nombresUnicosMagos.add("Ron Weasley");
@@ -31,7 +31,7 @@ public class Reclutador {
         nombresUnicosMagos.add("Neville");
         Collections.shuffle(nombresUnicosMagos);
 
-        // Miembros destacados de los Mortífagos y aliados oscuros
+        // Mortifagos y villanos
         nombresUnicosMortifagos.add("Voldemort");
         nombresUnicosMortifagos.add("Bellatrix");
         nombresUnicosMortifagos.add("Severus Snape");
@@ -44,7 +44,7 @@ public class Reclutador {
     }
     
     private static void asignarObjetos(Personaje p) {
-        // 20% de probabilidad de tener un objeto equipado (0 o 1 en un dado de 10)
+        // 40% de probabilidad de tener un objeto equipado (0 o 1 en un dado de 10)
         if (rand.nextInt(10) < 4) { 
             ObjetoMagico obj = FabricaObjetos.crearObjetoAleatorio();
             p.agregarObjeto(obj);
@@ -54,23 +54,32 @@ public class Reclutador {
 
     public static Mago crearMago() {
         contadorMagos++;
-        
-        Mago mago = switch (rand.nextInt(11)) {
-            // 10% de probabilidad: Héroe Único
-            case 0,10 -> {
+        Mago mago = null; // La declaramos al principio
+
+        switch (rand.nextInt(11)) {
+            case 0:
+            case 10:
                 if (!nombresUnicosMagos.isEmpty()) {
-                    yield new Auror(nombresUnicosMagos.remove(0), 180, 210, 220);
+                    mago = new Auror(nombresUnicosMagos.remove(0), 180, 210, 220);
+                } else {
+                    mago = new Auror("Auror " + contadorMagos, 120 + rand.nextInt(31), 120 + rand.nextInt(81), 150);
                 }
-                yield new Auror("Auror " + contadorMagos, 120 + rand.nextInt(31), 120 + rand.nextInt(81), 150);
-            }
-            
-            // 90% restante: Miembros comunes del batallón
-            case 1, 2, 3 -> new Auror("Auror " + contadorMagos, 120 + rand.nextInt(31), 120 + rand.nextInt(81), 150);
-            case 4, 5, 6 -> new Estudiante("Estudiante " + contadorMagos, 40 + rand.nextInt(31), 80 + rand.nextInt(41), 100);
-            case 7, 8, 9 -> new Profesor("Profesor " + contadorMagos, 80 + rand.nextInt(21), 130 + rand.nextInt(71), 125);
-            
-            default -> new Auror("Auror " + contadorMagos, 120 + rand.nextInt(31), 120 + rand.nextInt(81), 150);
-        };
+                break;
+
+            case 1: case 2: case 3:
+                mago = new Auror("Auror " + contadorMagos, 120 + rand.nextInt(31), 120 + rand.nextInt(81), 150);
+                break;
+            case 4: case 5: case 6:
+                mago = new Estudiante("Estudiante " + contadorMagos, 40 + rand.nextInt(31), 80 + rand.nextInt(41), 100);
+                break;
+            case 7: case 8: case 9:
+                mago = new Profesor("Profesor " + contadorMagos, 80 + rand.nextInt(21), 130 + rand.nextInt(71), 125);
+                break;
+            default:
+                mago = new Auror("Auror " + contadorMagos, 120 + rand.nextInt(31), 120 + rand.nextInt(81), 150);
+                break;
+        }
+
         asignarObjetos(mago);
         return mago;
     }
